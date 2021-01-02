@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2020-12-06 16:34:39
+Date: 2021-01-02 22:07:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,10 +42,10 @@ CREATE TABLE `drink` (
   `details` varchar(255) DEFAULT NULL,
   `price` float(10,1) NOT NULL,
   `pic` varchar(255) DEFAULT NULL,
-  `brix` varchar(20) DEFAULT NULL,
-  `temp` varchar(20) DEFAULT NULL,
-  `extra` varchar(20) DEFAULT NULL,
-  `size` varchar(20) DEFAULT NULL,
+  `brix` smallint(6) DEFAULT NULL,
+  `temp` smallint(6) DEFAULT NULL,
+  `extra` smallint(6) DEFAULT NULL,
+  `size` smallint(6) DEFAULT NULL,
   `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `evStar` float(10,1) DEFAULT NULL,
   PRIMARY KEY (`drinkId`)
@@ -64,6 +64,7 @@ INSERT INTO `drink` VALUES ('3', '柠檬鲜鲜', '新鲜柠檬', '4.0', null, '0
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `orderId` int(11) NOT NULL AUTO_INCREMENT,
+  `oId` int(11) DEFAULT NULL,
   `time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `userId` varchar(255) DEFAULT NULL,
   `drinkId` int(11) DEFAULT NULL,
@@ -82,8 +83,8 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '2020-12-6-15:05:03', 'testUser1', '1', '1', 'noneBrix', 'ice', 'pearl', 'large', '2', '1', '0', '18.0');
-INSERT INTO `order` VALUES ('2', '2020-12-6-15:05:03', 'testUser1', '2', '2', 'totalBrix', 'hot', null, 'middle', '1', '1', '0', '10.0');
+INSERT INTO `order` VALUES ('1', '1', '2020-12-6-15:05:03', 'testUser1', '1', '1', 'noneBrix', 'ice', 'pearl', 'large', '2', '0601', '0', '18.0');
+INSERT INTO `order` VALUES ('2', '1', '2020-12-6-15:05:03', 'testUser1', '2', '2', 'totalBrix', 'hot', null, 'middle', '1', '0601', '0', '10.0');
 
 -- ----------------------------
 -- Table structure for user
@@ -91,7 +92,6 @@ INSERT INTO `order` VALUES ('2', '2020-12-6-15:05:03', 'testUser1', '2', '2', 't
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userId` varchar(255) NOT NULL,
-  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `uName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -99,6 +99,6 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('testUser1', '15316221594', '测试用户1');
-INSERT INTO `user` VALUES ('testUser2', '15346497851', '测试用户2');
-INSERT INTO `user` VALUES ('testUser3', '18469762594', '测试用户3');
+INSERT INTO `user` VALUES ('testUser1', '测试用户1');
+INSERT INTO `user` VALUES ('testUser2', '测试用户2');
+INSERT INTO `user` VALUES ('testUser3', '测试用户3');
