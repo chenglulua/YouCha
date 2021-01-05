@@ -26,7 +26,7 @@
 
 1、确认原型的详细内容
 
-2、确定编程工具：微信开发者工具、Navicat for MySQL、IntelliJ IDEA
+2、确定编程工具：微信开发者工具、Navicat for MySQL、IntelliJ IDEA、HbuilderX
 
 3、1.5号确定原型
 

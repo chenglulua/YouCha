@@ -16,7 +16,7 @@ type：类别；字符串类型
 
 details：详情；字符串类型
 
-price：价格；浮点类型；默认中杯价格
+price：价格；整型；默认中杯价格
 
 pic：图片；字符串类型
 
@@ -24,7 +24,7 @@ brix：糖度；布尔类型；不可选0，可选1；无糖noneBrix、五分糖
 
 temp：温度；布尔类型；不可选0，可选1；冰ice、常温normal、热hot
 
-extra：小料；布尔类型；不可选0，可选1；珍珠pearl、椰果coconut、布丁pudding；每个1元；
+extra：小料；布尔类型；不可选0，可选1；珍珠pearl、芋圆taro、红豆ormosia、椰果coconut、布丁pudding；每个1元；
 
 size：规格；布尔类型；不可选0，可选1；中杯middle，大杯large；大杯价格为中杯+2元
 
@@ -44,17 +44,17 @@ drinkId：饮品号；外键；整型
 
 assId：评价号；外键；整型
 
-oBrix：糖度；字符串类型；无糖noneBrix、五分糖halfBrix、全糖totalBrix
+oBrix：糖度；字符串类型；无糖none、五分糖half、全糖total
 
 oTemp：温度；字符串类型；冰ice、常温normal、热hot
 
-oExtra：小料；字符串类型；珍珠pearl、椰果coconut、布丁pudding
+oExtra：小料；字符串类型；珍珠pearl、芋圆taro、红豆ormosia、椰果coconut、布丁pudding
 
 oSize：规格；字符串类型；中杯middle，大杯large 
 
 num：数量；整型
 
-tPrice：总价；浮点类型；num*price
+tPrice：总价；整型；num*price
 
 code：取餐码；字符串类型；日期序号04008
 
