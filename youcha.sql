@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2021-01-05 11:37:02
+Date: 2021-01-05 11:56:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,7 +81,9 @@ INSERT INTO `drink` VALUES ('22', '红茶奶盖', '特色奶盖', null, '6', nul
 INSERT INTO `drink` VALUES ('23', '绿茶奶盖', '特色奶盖', null, '6', null, '1', '1', '1', '1', '5');
 INSERT INTO `drink` VALUES ('24', '芒果奶盖', '特色奶盖', null, '7', null, '1', '1', '0', '1', '5');
 INSERT INTO `drink` VALUES ('25', '黑糖珍珠奶盖茶', '特色奶盖', null, '7', null, '1', '1', '0', '1', '4');
+INSERT INTO `drink` VALUES ('26', '奶盖牛乳茶', '特色奶盖', null, '5', null, '0', '0', '0', '1', '5');
 INSERT INTO `drink` VALUES ('27', '抹茶芝士奶盖', '特色奶盖', null, '7', null, '1', '1', '0', '1', '5');
+INSERT INTO `drink` VALUES ('28', '草莓冰激凌', '夏日冰冰', null, '5', null, '0', '0', '0', '1', '5');
 INSERT INTO `drink` VALUES ('29', '草莓沙冰', '夏日冰冰', null, '5', null, '0', '0', '0', '1', '5');
 INSERT INTO `drink` VALUES ('30', '冰鲜柠檬', '新鲜果饮', null, '3', null, '0', '0', '0', '1', '3');
 INSERT INTO `drink` VALUES ('31', '冰鲜青柠', '新鲜果饮', null, '3', null, '0', '0', '0', '1', '5');
@@ -94,11 +96,9 @@ INSERT INTO `drink` VALUES ('37', '冰鲜蓝莓', '新鲜果饮', null, '5', nul
 INSERT INTO `drink` VALUES ('38', '冰鲜荔枝', '新鲜果饮', null, '5', null, '0', '0', '0', '1', '4');
 INSERT INTO `drink` VALUES ('39', '柠檬红茶', '新鲜果饮', null, '4', null, '0', '0', '0', '1', '5');
 INSERT INTO `drink` VALUES ('40', '青柠红茶', '新鲜果饮', null, '4', null, '0', '0', '0', '1', '3');
+INSERT INTO `drink` VALUES ('41', '百香果红茶', '新鲜果饮', null, '5', null, '0', '0', '0', '1', '5');
 INSERT INTO `drink` VALUES ('42', '青柠百香果', '新鲜果饮', null, '5', null, '0', '0', '0', '1', '3');
-INSERT INTO `drink` VALUES ('44', null, null, null, '5', null, '0', '0', '0', '1', '5');
-INSERT INTO `drink` VALUES ('55', null, null, null, '5', null, '0', '0', '0', '1', '5');
-INSERT INTO `drink` VALUES ('222', '草莓冰激凌', '夏日冰冰', null, '5', null, '0', '0', '0', '1', '5');
-INSERT INTO `drink` VALUES ('2222', '奶盖牛乳茶', '特色奶盖', null, '5', null, '0', '0', '0', '1', '5');
+INSERT INTO `drink` VALUES ('43', '水果茶', '新鲜果饮', null, '5', null, '0', '0', '0', '1', '5');
 
 -- ----------------------------
 -- Table structure for order
