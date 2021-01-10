@@ -134,4 +134,24 @@ public class Order {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", oId=" + oId +
+                ", userId='" + userId + '\'' +
+                ", time='" + time + '\'' +
+                ", drinkId=" + drinkId +
+                ", assId=" + assId +
+                ", oBrix='" + oBrix + '\'' +
+                ", oTemp='" + oTemp + '\'' +
+                ", oExtra='" + oExtra + '\'' +
+                ", oSize='" + oSize + '\'' +
+                ", num=" + num +
+                ", tPrice=" + tPrice +
+                ", code='" + code + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

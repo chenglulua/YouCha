@@ -35,4 +35,13 @@ public class Assessment {
     public void setStar(int star) {
         this.star = star;
     }
+
+    @Override
+    public String toString() {
+        return "Assessment{" +
+                "assId=" + assId +
+                ", drinkId=" + drinkId +
+                ", star=" + star +
+                '}';
+    }
 }

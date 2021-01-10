@@ -8,14 +8,14 @@ package com.youcha.entity;
  */
 public class User {
 
-    private int userId;
+    private String userId;
     private String uName;
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

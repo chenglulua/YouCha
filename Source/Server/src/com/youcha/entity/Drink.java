@@ -107,4 +107,21 @@ public class Drink {
     public void setEvStar(int evStar) {
         this.evStar = evStar;
     }
+
+    @Override
+    public String toString() {
+        return "Drink{" +
+                "drinkId=" + drinkId +
+                ", dName='" + dName + '\'' +
+                ", type='" + type + '\'' +
+                ", details='" + details + '\'' +
+                ", price=" + price +
+                ", pic='" + pic + '\'' +
+                ", brix=" + brix +
+                ", temp=" + temp +
+                ", extra=" + extra +
+                ", size=" + size +
+                ", evStar=" + evStar +
+                '}';
+    }
 }
