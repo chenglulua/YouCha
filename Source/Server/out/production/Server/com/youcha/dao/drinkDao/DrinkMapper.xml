@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youcha.dao.drinkDao.DrinkMapper">
+
+    <!--获取饮品总数-->
+    <select id="getDrinkNum" resultType="java.lang.Integer">
+        select count(drinkId) from drink
+    </select>
+
+    <!--获取单个饮品-->
+    <select id="getSingleDrink" resultType="com.youcha.entity.Drink">
+        select * from drink where drinkId = #{id}
+    </select>
+</mapper>
