@@ -12,5 +12,6 @@
   </head>
   <body>
   测试成功了么？
+  <img src="drinkImg/10.jpg">
   </body>
 </html>
