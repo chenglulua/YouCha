@@ -12,13 +12,13 @@ drinkId：饮品号；主键；整型
 
 dName：名称；字符串类型
 
-type：类别；字符串类型
+type：类别；外键；字符串类型；
 
 details：详情；字符串类型
 
 price：价格；整型；默认中杯价格
 
-pic：图片；字符串类型
+img：图片；字符串类型
 
 brix：糖度；布尔类型；不可选0，可选1；无糖noneBrix、五分糖halfBrix、全糖totalBrix
 
@@ -67,3 +67,11 @@ assId：评价号；主键；整型
 drinkId：饮品号；外键；整型
 
 star：星级；整型；1-5级
+
+### **类型表Type：**
+
+typeId；类型号；主键；整型
+
+userId：用户号；主键；字符串类型；可使用openId
+
+tName：类型名称；字符串类型
