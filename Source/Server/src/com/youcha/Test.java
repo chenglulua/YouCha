@@ -25,16 +25,16 @@ public class Test {
 
 		/*首页随机推荐三个饮品*/
 //		tuiJian3();
-		
+
 
 
 //		SqlSession session = MyBatisUtil.getSession();
-//		//获取所有用户信息
-//		UserMapper userMapper = session.getMapper(UserMapper.class);
-//		List<User> users = userMapper.selectAllUsers();
-//		for(User u : users) {
-//			System.out.println(u);
-//		}
+////		//获取所有用户信息
+////		UserMapper userMapper = session.getMapper(UserMapper.class);
+////		List<User> users = userMapper.getAllUsers();
+////		for(User u : users) {
+////			System.out.println(u);
+////		}
 //		session.close();
 
 		/*ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -59,7 +59,7 @@ public class Test {
 		}
 		System.out.println(randomList[0]+" "+randomList[1]+" " + randomList[2]);
 		//4.获取3个饮品信息
-		ArrayList<Drink> drinkList = new ArrayList<Drink>(num);
+		ArrayList<Drink> drinkList = new ArrayList<>(num);
 		for (int i = 0; i < num; i++){
 			Drink drink = drinkMapper.getSingleDrink(randomList[i]);
 			drinkList.add(drink);

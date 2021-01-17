@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2021-01-14 13:47:45
+Date: 2021-01-17 16:58:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `drink`;
 CREATE TABLE `drink` (
   `drinkId` int(11) NOT NULL,
   `dName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `typeId` int(11) DEFAULT NULL,
   `details` varchar(255) DEFAULT NULL,
   `price` int(11) DEFAULT '5',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -161,12 +161,14 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userId` varchar(255) NOT NULL,
   `uName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('testUser1', '测试用户1');
-INSERT INTO `user` VALUES ('testUser2', '测试用户2');
-INSERT INTO `user` VALUES ('testUser3', '测试用户3');
+INSERT INTO `user` VALUES ('testUser1', '测试用户1', '13301211646', '123456');
+INSERT INTO `user` VALUES ('testUser2', '测试用户2', '12458465795', '123456');
+INSERT INTO `user` VALUES ('testUser3', '测试用户3', '13012149543', '123456');

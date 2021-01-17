@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    public List<User> selectAllUsers();
+    /*获取所有用户信息*/
+    public List<User> getAllUsers();
 
 }
