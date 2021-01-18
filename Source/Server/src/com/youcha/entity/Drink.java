@@ -10,7 +10,7 @@ public class Drink {
 
     private int drinkId;
     private String dName;
-    private String type;
+    private int typeId;
     private String details;
     private int price;
     private String pic;
@@ -36,12 +36,12 @@ public class Drink {
         this.dName = dName;
     }
 
-    public String getType() {
-        return type;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
     public String getDetails() {
@@ -113,7 +113,7 @@ public class Drink {
         return "Drink{" +
                 "drinkId=" + drinkId +
                 ", dName='" + dName + '\'' +
-                ", type='" + type + '\'' +
+                ", typeId=" + typeId +
                 ", details='" + details + '\'' +
                 ", price=" + price +
                 ", pic='" + pic + '\'' +

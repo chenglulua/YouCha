@@ -35,4 +35,10 @@ public class UserController {
         List<User> userList = this.userService.getAllUsers();
         return userList;
     }
+
+    @ResponseBody
+    @RequestMapping("register")
+    public String register(){
+        return "";
+    }
 }
