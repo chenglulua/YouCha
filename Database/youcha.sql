@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2021-01-18 13:52:05
+Date: 2021-01-19 16:30:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -101,10 +101,10 @@ INSERT INTO `drink` VALUES ('42', '青柠百香果', '7', '青柠与百香果', 
 INSERT INTO `drink` VALUES ('43', '水果茶', '7', '水果多多', '5', 'drinkImg/43.jpg', '0', '0', '0', '1', '5');
 
 -- ----------------------------
--- Table structure for order
+-- Table structure for ordertable
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `ordertable`;
+CREATE TABLE `ordertable` (
   `orderId` int(11) NOT NULL AUTO_INCREMENT,
   `oId` int(11) DEFAULT NULL,
   `userId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -123,15 +123,15 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of order
+-- Records of ordertable
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '1', 'testUser1', '2020-12-6-15:05:03', '1', '1', 'none', 'ice', 'pearl', 'large', '2', '14', '06001', '1');
-INSERT INTO `order` VALUES ('2', '1', 'testUser1', '2020-12-6-15:05:03', '2', '2', 'total', 'hot', null, 'middle', '1', '4', '06001', '1');
-INSERT INTO `order` VALUES ('3', '2', 'testUser2', '2021-1-2-11:28:26', '30', '3', null, null, null, 'large', '1', '5', '02001', '1');
-INSERT INTO `order` VALUES ('4', '3', 'testUser3', '2021-1-2-11:30:10', '17', '4', null, null, null, 'large', '1', '7', '02002', '1');
-INSERT INTO `order` VALUES ('5', '4', 'testUser1', '2021-1-3-18:16:23', '25', null, 'half', 'hot', '', 'middle', '1', '7', '02003', '0');
-INSERT INTO `order` VALUES ('6', '5', 'testUser2', '2021-1-3-18:16:25', '22', null, 'half', 'normal', 'pearl', 'large', '2', '18', '02004', '0');
-INSERT INTO `order` VALUES ('7', '5', 'testUser2', '2021-1-3-18:16:23', '7', null, 'none', 'ice', null, 'middle', '1', '5', '02004', '0');
+INSERT INTO `ordertable` VALUES ('1', '1', '12846059', '2020-12-6-15:05:03', '1', '1', 'none', 'ice', 'pearl', 'large', '2', '14', '06001', '1');
+INSERT INTO `ordertable` VALUES ('2', '1', '12846059', '2020-12-6-15:05:03', '2', '2', 'total', 'hot', null, 'middle', '1', '4', '06001', '1');
+INSERT INTO `ordertable` VALUES ('3', '2', '18469875', '2021-1-2-11:28:26', '30', '3', null, null, null, 'large', '1', '5', '02001', '1');
+INSERT INTO `ordertable` VALUES ('4', '3', '12589456', '2021-1-2-11:30:10', '17', '4', null, null, null, 'large', '1', '7', '02002', '1');
+INSERT INTO `ordertable` VALUES ('5', '4', '12846059', '2021-1-3-18:16:23', '25', null, 'half', 'hot', '', 'middle', '1', '7', '02003', '0');
+INSERT INTO `ordertable` VALUES ('6', '5', '18469875', '2021-1-3-18:16:25', '22', null, 'half', 'normal', 'pearl', 'large', '2', '18', '02004', '0');
+INSERT INTO `ordertable` VALUES ('7', '5', '18469875', '2021-1-3-18:16:23', '7', null, 'none', 'ice', null, 'middle', '1', '5', '02004', '0');
 
 -- ----------------------------
 -- Table structure for type
