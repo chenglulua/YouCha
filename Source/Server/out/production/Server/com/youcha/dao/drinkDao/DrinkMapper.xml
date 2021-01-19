@@ -12,4 +12,9 @@
     <select id="getSingleDrink" resultType="com.youcha.entity.Drink">
         select * from drink where drinkId = #{id}
     </select>
+
+    <!--获取所有饮品信息-->
+    <select id="getAllDrinks" resultType="com.youcha.entity.Drink">
+        select * from drink
+    </select>
 </mapper>

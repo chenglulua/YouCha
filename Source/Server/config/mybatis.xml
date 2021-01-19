@@ -19,7 +19,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper class="com.youcha.dao.userDao.UserMapper"/>
         <mapper class="com.youcha.dao.drinkDao.DrinkMapper"/>
+        <mapper class="com.youcha.dao.orderDao.OrderMapper"/>
+        <mapper class="com.youcha.dao.typeDao.TypeMapper"/>
+        <mapper class="com.youcha.dao.userDao.UserMapper"/>
     </mappers>
 </configuration>

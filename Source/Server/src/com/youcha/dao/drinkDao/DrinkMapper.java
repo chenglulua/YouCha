@@ -3,6 +3,7 @@ package com.youcha.dao.drinkDao;
 import com.youcha.entity.Drink;
 import com.youcha.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,4 +19,7 @@ public interface DrinkMapper {
 
     /*获取单个饮品*/
     public Drink getSingleDrink(int drinkId);
+
+    /*获取所有饮品信息*/
+    public ArrayList<Drink> getAllDrinks();
 }

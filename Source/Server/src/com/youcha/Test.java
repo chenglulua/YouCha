@@ -1,17 +1,18 @@
 package com.youcha;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.youcha.dao.drinkDao.DrinkMapper;
+import com.youcha.dao.orderDao.OrderMapper;
+import com.youcha.dao.typeDao.TypeMapper;
 import com.youcha.dao.userDao.UserMapper;
 import com.youcha.entity.Drink;
+import com.youcha.entity.OrderTable;
+import com.youcha.entity.Type;
 import com.youcha.entity.User;
 import com.youcha.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @Description 测试类
@@ -32,18 +33,42 @@ public class Test {
 		/*用户登录*/
 //		login();
 
-//		SqlSession session = MyBatisUtil.getSession();
-////		//获取所有用户信息
-////		UserMapper userMapper = session.getMapper(UserMapper.class);
-////		List<User> users = userMapper.getAllUsers();
-////		for(User u : users) {
-////			System.out.println(u);
-////		}
-//		session.close();
+		/*获取所有饮品类型*/
+//		getType();
 
-		/*ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-		User user = (User)ac.getBean("User");
-		System.out.println(user);*/
+		/*获取所有饮品信息*/
+//		getDrink();
+
+		/*根据用户获取订单信息*/
+//		getOrder();
+	}
+
+	private static void getOrder() {
+		int userId = 18469875;
+		SqlSession session = MyBatisUtil.getSession();
+		OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+		ArrayList<OrderTable> orderList = new ArrayList<>();
+		orderList = orderMapper.getOrderByUserId(userId);
+		System.out.println(orderList);
+		session.close();
+	}
+
+	private static void getDrink() {
+		SqlSession session = MyBatisUtil.getSession();
+		DrinkMapper drinkMapper = session.getMapper(DrinkMapper.class);
+		ArrayList<Drink> drinkList = new ArrayList<>();
+		drinkList = drinkMapper.getAllDrinks();
+		System.out.println(drinkList);
+		session.close();
+	}
+
+	private static void getType() {
+		SqlSession session = MyBatisUtil.getSession();
+		TypeMapper typeMapper = session.getMapper(TypeMapper.class);
+		ArrayList<Type> typeList = new ArrayList<>();
+		typeList = typeMapper.getAllTypes();
+		System.out.println(typeList);
+		session.close();
 	}
 
 	private static void login() {

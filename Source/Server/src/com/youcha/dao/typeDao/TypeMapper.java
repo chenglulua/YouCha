@@ -1,0 +1,17 @@
+package com.youcha.dao.typeDao;
+
+import com.youcha.entity.Type;
+
+import java.util.ArrayList;
+
+/**
+ * @ClassName TypeMapper
+ * @Description Type映射器接口
+ * @Author 程璐
+ * @Date 2021-01-19 15:07
+ */
+public interface TypeMapper {
+
+    /*获取所有类型信息*/
+    public ArrayList<Type> getAllTypes();
+}

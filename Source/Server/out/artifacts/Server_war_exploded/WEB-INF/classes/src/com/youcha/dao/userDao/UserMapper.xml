@@ -7,4 +7,24 @@
     <select id="getAllUsers" resultType="com.youcha.entity.User">
         select * from user
     </select>
+
+    <!--根据电话查找用户-->
+    <select id="getUserByPhone" resultType="com.youcha.entity.User">
+        select * from user where phone = #{phone}
+    </select>
+
+    <!--根据用户Id查找用户-->
+    <select id="getUserById" resultType="com.youcha.entity.User">
+        select * from user where userId = #{userId}
+    </select>
+
+    <!--插入用户-->
+    <insert id="insertUser" parameterType="com.youcha.entity.User">
+        insert into user(userId,uName, phone,password)values (#{userId},#{uName}, #{phone},#{password})
+    </insert>
+
+    <!--根据电话和密码查找用户-->
+    <select id="getUserByPhoneAndPassword" resultType="com.youcha.entity.User">
+        select * from user where phone = #{arg0} and password = #{arg1}
+    </select>
 </mapper>

@@ -1,12 +1,12 @@
 package com.youcha.entity;
 
 /**
- * @ClassName Order
- * @Description Order实体类
+ * @ClassName OrderTable
+ * @Description OrderTable实体类
  * @Author 程璐
  * @Date 2021-01-09 10:20
  */
-public class Order {
+public class OrderTable {
 
     private int orderId;
     private int oId;
