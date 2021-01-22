@@ -3,7 +3,6 @@ package com.youcha.entity;
 /**
  * @ClassName Drink
  * @Description Drink实体类
- * @Author 程璐
  * @Date 2021-01-09 10:20
  */
 public class Drink {
@@ -13,7 +12,7 @@ public class Drink {
     private int typeId;
     private String details;
     private int price;
-    private String pic;
+    private String img;
     private boolean brix;
     private boolean temp;
     private boolean extra;
@@ -60,12 +59,12 @@ public class Drink {
         this.price = price;
     }
 
-    public String getPic() {
-        return pic;
+    public String getImg() {
+        return img;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public boolean getBrix() {
@@ -116,7 +115,7 @@ public class Drink {
                 ", typeId=" + typeId +
                 ", details='" + details + '\'' +
                 ", price=" + price +
-                ", pic='" + pic + '\'' +
+                ", img='" + img + '\'' +
                 ", brix=" + brix +
                 ", temp=" + temp +
                 ", extra=" + extra +

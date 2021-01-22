@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 /**
  * @ClassName MyBatisUtil
  * @Description MyBatis工具类
- * @Author 程璐
  * @Date 2021-01-10 10:20
  */
 public class MyBatisUtil {

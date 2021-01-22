@@ -3,7 +3,6 @@ package com.youcha.entity;
 /**
  * @ClassName Type
  * @Description Type实体类
- * @Author 程璐
  * @Date 2021-01-18 14:08
  */
 public class Type {

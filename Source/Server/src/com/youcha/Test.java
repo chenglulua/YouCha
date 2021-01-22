@@ -16,9 +16,6 @@ import org.apache.ibatis.session.SqlSession;
 
 /**
  * @Description 测试类
- * @Author 程璐
- * @Param
- * @Return
  */
 public class Test {
 
@@ -26,12 +23,6 @@ public class Test {
 
 		/*首页随机推荐三个饮品*/
 //		tuiJian3();
-
-		/*用户注册*/
-//		zhuce();
-
-		/*用户登录*/
-//		login();
 
 		/*获取所有饮品类型*/
 //		getType();
@@ -41,6 +32,30 @@ public class Test {
 
 		/*根据用户获取订单信息*/
 //		getOrder();
+
+		/*新增饮品*/
+		addDrink();
+	}
+
+	private static void addDrink() {
+		Drink drink = new Drink();
+		drink.setDrinkId(0);
+		drink.setDName("dd");
+		drink.setTypeId(2);
+		drink.setDetails("wwww");
+		drink.setPrice(5);
+		drink.setImg("img");
+		drink.setBrix(false);
+		drink.setTemp(false);
+		drink.setExtra(false);
+		drink.setSize(false);
+		drink.setEvStar(2);
+		SqlSession session = MyBatisUtil.getSession();
+		DrinkMapper drinkMapper = session.getMapper(DrinkMapper.class);
+		int result = drinkMapper.insertDrink(drink);
+		session.commit();
+		System.out.println(result);
+		session.close();
 	}
 
 	private static void getOrder() {
@@ -69,72 +84,6 @@ public class Test {
 		typeList = typeMapper.getAllTypes();
 		System.out.println(typeList);
 		session.close();
-	}
-
-	private static void login() {
-		SqlSession session = MyBatisUtil.getSession();
-		UserMapper userMapper = session.getMapper(UserMapper.class);
-		//手机号：11122233344，密码123456
-		String phone = "11122233344";
-		String password = "123456";
-		User user = userMapper.getUserByPhoneAndPassword(phone, password);
-		System.out.println(user);
-		if (user != null){
-			System.out.println("登录成功");
-		} else {
-			System.out.println("登录失败");
-		}
-		session.close();
-	}
-
-	private static void zhuce() {
-		SqlSession session = MyBatisUtil.getSession();
-		UserMapper userMapper = session.getMapper(UserMapper.class);
-		//手机号：11122233344，密码123456
-		String phone = "11122233344";
-		String password = "123456";
-		String uName = "新注册用户";
-		//1、判断手机号是否注册过
-		User user1 = userMapper.getUserByPhone(phone);
-		System.out.println(user1);
-		if (user1 == null){
-			//2、没有注册过->分配存储
-			//随机生成8位用户ID
-			String userId;
-			User user2 = new User();
-			//3、判断分配的id是否已存在
-			do {
-				//4、存在->重新分配
-				userId = getRandomUserId(8);
-				user2 = userMapper.getUserById(userId);
-			} while (user2 != null);
-			//4、不存在->存储user
-			User user = new User();
-			user.setUserId(userId);
-			user.setUName(uName);
-			user.setPhone(phone);
-			user.setPassword(password);
-			userMapper.insertUser(user);
-			session.commit();
-		} else {
-			//2、注册过->返回“用户已注册，请直接登录”
-			System.out.println("已注册，请直接登录");
-		}
-		session.close();
-	}
-
-	/*生成8位随机数*/
-	private static String getRandomUserId(int length) {
-		//定义变长字符串
-		StringBuilder str=new StringBuilder();
-		Random random=new Random();
-		//随机生成数字，并添加到字符串
-		for(int i=0;i<length;i++){
-			str.append(random.nextInt(10));
-		}
-		//将字符串转换为数字并输出
-		System.out.println(str.toString());
-		return str.toString();
 	}
 
 	private static void tuiJian3() {

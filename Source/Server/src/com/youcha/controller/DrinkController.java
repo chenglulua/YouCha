@@ -13,7 +13,6 @@ import java.util.ArrayList;
 /**
  * @ClassName DrinkController
  * @Description Drink控制器类
- * @Author 程璐
  * @Date 2021-01-10 15:25
  */
 @Controller
@@ -24,8 +23,7 @@ public class DrinkController {
     private DrinkService drinkService;
 
     /**
-     * @Description 小程序端随机推荐num个饮品
-     * @Author 程璐
+     * @Description 前端随机推荐num个饮品
      * @Param [num]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
@@ -34,5 +32,43 @@ public class DrinkController {
     public ArrayList<Drink> randomDrinks(@RequestParam int num) {
         ArrayList<Drink> drinkList = this.drinkService.randomDrinks(num);
         return drinkList;
+    }
+
+    /**
+     * @Description 后台获取所有饮品
+     * @Param []
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    @ResponseBody
+    @RequestMapping("getAllDrinks")
+    public ArrayList<Drink> getAllDrinks(){
+        ArrayList<Drink> drinkList = this.drinkService.getAllDrinks();
+        return drinkList;
+    }
+
+    /**
+     * @Description 后台新增饮品
+     * @Param [drinkId, dName, typeId, details, price, pic, brix, temp, extra, size, evStar]
+     * @Return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("addDrink")
+    public boolean addDrink(int drinkId, String dName, int typeId, String details,
+                           int price, String img, boolean brix, boolean temp,
+                           boolean extra, boolean size, int evStar){
+        Drink drink = new Drink();
+        drink.setDrinkId(drinkId);
+        drink.setDName(dName);
+        drink.setTypeId(typeId);
+        drink.setDetails(details);
+        drink.setPrice(price);
+        drink.setImg(img);
+        drink.setBrix(brix);
+        drink.setTemp(temp);
+        drink.setExtra(extra);
+        drink.setSize(size);
+        drink.setEvStar(evStar);
+        boolean result = this.drinkService.addDrink(drink);
+        return result;
     }
 }

@@ -14,7 +14,6 @@ import java.util.Random;
 /**
  * @ClassName DrinkService
  * @Description Drink应用逻辑层
- * @Author 程璐
  * @Date 2021-01-10 15:25
  */
 @Service
@@ -25,8 +24,7 @@ public class DrinkService {
     private DrinkMapper drinkMapper;
 
     /**
-     * @Description 小程序端随机推荐num个饮品
-     * @Author 程璐
+     * @Description 前端随机推荐num个饮品
      * @Param [num]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
@@ -47,7 +45,7 @@ public class DrinkService {
         //4.获取num个饮品信息
         ArrayList<Drink> drinkList = new ArrayList<>(num);
         for (int i = 0; i < num; i++){
-            Drink drink = drinkMapper.getSingleDrink(randomList[i]);
+            Drink drink = drinkMapper.getDrinkById(randomList[i]);
             drinkList.add(drink);
         }
         System.out.println(drinkList);
@@ -56,8 +54,44 @@ public class DrinkService {
     }
 
     /**
+     * @Description 后台获取所有饮品
+     * @Param []
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    public ArrayList<Drink> getAllDrinks() {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        ArrayList<Drink> drinkList = new ArrayList<>();
+        drinkList = drinkMapper.getAllDrinks();
+        return drinkList;
+    }
+
+    /**
+     * @Description 后台新增饮品
+     * @Param [drink]
+     * @Return java.lang.String
+     */
+    public boolean addDrink(Drink drink) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        //1、判断drinkId是否存在
+        Drink drink1 = drinkMapper.getDrinkById(drink.getDrinkId());
+        if (drink1 != null){
+            //2、若存在，返回“已存在，重新输入”
+            session.close();
+            return false;
+        } else {
+            //2、若不存在，插入，返回“插入成功”
+            int result = drinkMapper.insertDrink(drink);
+            System.out.println(result);
+            session.commit();
+            session.close();
+            return true;
+        }
+    }
+
+    /**
      * @Description 在[0-sum)中生成num个不重复的随机数
-     * @Author 程璐
      * @Param [sum, num]
      * @Return int[]
      */

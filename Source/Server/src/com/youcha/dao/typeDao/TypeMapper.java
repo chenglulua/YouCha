@@ -7,7 +7,6 @@ import java.util.ArrayList;
 /**
  * @ClassName TypeMapper
  * @Description Type映射器接口
- * @Author 程璐
  * @Date 2021-01-19 15:07
  */
 public interface TypeMapper {

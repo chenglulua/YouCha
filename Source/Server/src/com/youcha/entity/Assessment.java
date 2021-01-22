@@ -3,7 +3,6 @@ package com.youcha.entity;
 /**
  * @ClassName Assessment
  * @Description Assessment实体类
- * @Author 程璐
  * @Date 2021-01-09 10:20
  */
 public class Assessment {

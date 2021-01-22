@@ -3,7 +3,6 @@ package com.youcha.entity;
 /**
  * @ClassName User
  * @Description User实体类
- * @Author 程璐
  * @Date 2020-12-14 16:15
  */
 public class User {

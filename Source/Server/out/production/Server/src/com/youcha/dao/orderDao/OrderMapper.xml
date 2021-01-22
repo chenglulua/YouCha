@@ -6,5 +6,4 @@
     <select id="getOrderByUserId" resultType="com.youcha.entity.OrderTable">
         select * from orderTable where userId = #{userId}
     </select>
-
 </mapper>
