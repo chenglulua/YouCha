@@ -54,6 +54,41 @@ public class DrinkService {
     }
 
     /**
+     * @Description 后台查看单个饮品信息
+     * @Param [drinkId]
+     * @Return com.youcha.entity.Drink
+     */
+    public Drink getDrink(int drinkId) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        Drink drink = drinkMapper.getDrinkById(drinkId);
+        System.out.println(drink);
+        session.close();
+        return drink;
+    }
+
+    /**
+     * @Description 后台编辑饮品信息
+     * @Param [drink]
+     * @Return com.youcha.entity.Drink
+     */
+    public boolean updateDrink(Drink drink) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        int result = drinkMapper.updateDrink(drink);
+        session.commit();
+        session.close();
+        System.out.println(result);
+        if (result == 1){
+            //更新成功
+            return true;
+        } else {
+            //更新失败
+            return false;
+        }
+    }
+
+    /**
      * @Description 后台获取所有饮品
      * @Param []
      * @Return java.util.ArrayList<com.youcha.entity.Drink>

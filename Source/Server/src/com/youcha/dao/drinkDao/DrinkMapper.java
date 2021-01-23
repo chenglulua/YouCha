@@ -22,4 +22,7 @@ public interface DrinkMapper {
 
     /*新增饮品*/
     public int insertDrink(Drink drink);
+
+    /*更新饮品*/
+    public int updateDrink(Drink drink);
 }

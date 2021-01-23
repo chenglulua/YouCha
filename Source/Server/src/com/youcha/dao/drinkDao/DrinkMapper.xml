@@ -20,9 +20,17 @@
     <!--新增饮品-->
     <insert id="insertDrink" >
         insert into
-        drink(drinkId, dName, typeId, details, price, img,
-        brix, temp, extra, size, evStar)
+        drink(drinkId, dName, typeId, details, price, img, brix, temp, extra, size, evStar)
         value (#{drinkId}, #{dName}, #{typeId}, #{details}, #{price}, #{img},
         #{brix}, #{temp}, #{extra}, #{size}, #{evStar})
     </insert>
+
+    <!--更新饮品-->
+    <update id="updateDrink">
+        update drink set
+        dName = #{dName}, typeId = #{typeId}, details = #{details}, price = #{price},
+        img = #{img}, brix = #{brix}, temp = #{temp}, extra = #{extra},
+        size = #{size}, evStar = #{evStar}
+        where typeId = #{drinkId}
+    </update>
 </mapper>

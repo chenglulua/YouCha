@@ -29,9 +29,9 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("register")
-    public String register(@RequestParam("phone") String phone, @RequestParam("password") String password){
-        String result = this.userService.register(phone, password);
-        return result;
+    public String register(@RequestParam("phone") String phone,
+                           @RequestParam("password") String password){
+        return this.userService.register(phone, password);
     }
 
     /**
@@ -41,9 +41,9 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("login")
-    public User login(@RequestParam("phone") String phone, @RequestParam("password") String password){
-        User user = this.userService.login(phone, password);
-        return user;
+    public User login(@RequestParam("phone") String phone,
+                      @RequestParam("password") String password){
+        return this.userService.login(phone, password);
     }
 
     /**
@@ -54,7 +54,6 @@ public class UserController {
     @ResponseBody
     @RequestMapping("getAllUsers")
     public List<User> getAllUsers(){
-        List<User> userList = this.userService.getAllUsers();
-        return userList;
+        return this.userService.getAllUsers();
     }
 }
