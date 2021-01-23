@@ -34,6 +34,29 @@ public class DrinkController {
     }
 
     /**
+     * @Description 后台根据价格区间查找饮品
+     * @Param [price1, price2]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    @ResponseBody
+    @RequestMapping("getDrinkByPrice")
+    public ArrayList<Drink> getDrinkByPrice(
+            @RequestParam("price1") int price1, @RequestParam("price2") int price2){
+        return this.drinkService.getDrinkByPrice(price1, price2);
+    }
+
+    /**
+     * @Description 后台根据名称模糊查找饮品
+     * @Param [str]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    @ResponseBody
+    @RequestMapping("getDrinkByName")
+    public ArrayList<Drink> getDrinkByName(@RequestParam("str") String str){
+        return this.drinkService.getDrinksByName(str);
+    }
+
+    /**
      * @Description 后台编辑饮品信息
      * @Param [drinkId, dName, typeId, details, price, img, brix, temp, extra, size, evStar]
      * @Return com.youcha.entity.Drink

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @ClassName OrderMapper
- * @Description
+ * @Description Order映射器接口
  * @Date 2021-01-19 15:40
  */
 public interface OrderMapper {

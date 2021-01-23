@@ -33,4 +33,14 @@
         size = #{size}, evStar = #{evStar}
         where typeId = #{drinkId}
     </update>
+
+    <!--根据名称模糊查询-->
+    <select id="getDrinkByName" resultType="com.youcha.entity.Drink">
+        select * from drink where dName like concat('%', #{str}, '%')
+    </select>
+
+    <!--后台根据价格区间查找饮品-->
+    <select id="getDrinkByPrice" resultType="com.youcha.entity.Drink">
+        select * from drink where price between #{price1} and #{price2}
+    </select>
 </mapper>

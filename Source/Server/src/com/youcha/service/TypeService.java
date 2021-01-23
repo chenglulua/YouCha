@@ -4,6 +4,8 @@ import com.youcha.dao.typeDao.TypeMapper;
 import com.youcha.entity.Type;
 import com.youcha.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
  * @Description Type应用逻辑层
  * @Date 2021-01-23 17:26
  */
+@Service
+@Transactional(readOnly = true)
 public class TypeService {
 
     @Resource
@@ -25,10 +29,10 @@ public class TypeService {
      */
     public ArrayList<Type> getAllTypes() {
         SqlSession session = MyBatisUtil.getSession();
-        TypeMapper typeMapper = session.getMapper(TypeMapper.class);
-        ArrayList<Type> typeList = new ArrayList<>();
+        typeMapper = session.getMapper(TypeMapper.class);
+        ArrayList<Type> typeList = typeMapper.getAllTypes();
         System.out.println(typeList);
         session.close();
-        return typeMapper.getAllTypes();
+        return typeList;
     }
 }

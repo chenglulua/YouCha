@@ -31,11 +31,9 @@ public class UserService {
     public List<User> getAllUsers() {
         SqlSession session = MyBatisUtil.getSession();
 		userMapper = session.getMapper(UserMapper.class);
-		List<User> userList = userMapper.getAllUsers();
-		for(User u : userList) {
-			System.out.println(u);
-		}
-		session.close();
+        List<User> userList = userMapper.getAllUsers();
+        System.out.println(userList);
+        session.close();
 		return userList;
     }
 

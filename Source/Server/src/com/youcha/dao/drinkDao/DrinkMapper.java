@@ -25,4 +25,10 @@ public interface DrinkMapper {
 
     /*更新饮品*/
     public int updateDrink(Drink drink);
+
+    /*根据名称模糊查询*/
+    public ArrayList<Drink> getDrinkByName(String str);
+
+    /*后台根据价格区间查找饮品*/
+    public ArrayList<Drink> getDrinkByPrice(int price1, int price2);
 }

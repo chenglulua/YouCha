@@ -36,7 +36,6 @@ public class DrinkService {
         System.out.println(sum);
         //2.生成num个不重复的随机数，随机范围为[0-sum)
         int[] randomList = getRandom(sum, num);
-        System.out.println(randomList[0]+" "+randomList[1]+" " + randomList[2]);
         //3.将推荐移动到[1,sum]之间
         for (int i = 0; i < num; i++){
             randomList[i] += 1;
@@ -48,6 +47,34 @@ public class DrinkService {
             Drink drink = drinkMapper.getDrinkById(randomList[i]);
             drinkList.add(drink);
         }
+        System.out.println(drinkList);
+        session.close();
+        return drinkList;
+    }
+
+    /**
+     * @Description 后台根据价格区间查找饮品
+     * @Param [price1, price2]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    public ArrayList<Drink> getDrinkByPrice(int price1, int price2) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        ArrayList<Drink> drinkList = drinkMapper.getDrinkByPrice(price1, price2);
+        System.out.println(drinkList);
+        session.close();
+        return drinkList;
+    }
+
+    /**
+     * @Description 后台根据名称模糊查找饮品
+     * @Param [str]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    public ArrayList<Drink> getDrinksByName(String str) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        ArrayList<Drink> drinkList = drinkMapper.getDrinkByName(str);
         System.out.println(drinkList);
         session.close();
         return drinkList;
@@ -76,9 +103,9 @@ public class DrinkService {
         SqlSession session = MyBatisUtil.getSession();
         drinkMapper = session.getMapper(DrinkMapper.class);
         int result = drinkMapper.updateDrink(drink);
+        System.out.println(result);
         session.commit();
         session.close();
-        System.out.println(result);
         if (result == 1){
             //更新成功
             return true;
@@ -96,8 +123,9 @@ public class DrinkService {
     public ArrayList<Drink> getAllDrinks() {
         SqlSession session = MyBatisUtil.getSession();
         drinkMapper = session.getMapper(DrinkMapper.class);
-        ArrayList<Drink> drinkList = new ArrayList<>();
-        drinkList = drinkMapper.getAllDrinks();
+        ArrayList<Drink> drinkList = drinkMapper.getAllDrinks();
+        System.out.println(drinkList);
+        session.close();
         return drinkList;
     }
 
