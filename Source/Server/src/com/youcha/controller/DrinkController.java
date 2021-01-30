@@ -3,6 +3,7 @@ package com.youcha.controller;
 import com.youcha.entity.Drink;
 import com.youcha.service.DrinkService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class DrinkController {
 
     @Resource
-    private DrinkService drinkService;
+    private DrinkService drinkService = new DrinkService();
 
     /**
      * @Description 前端随机推荐num个饮品
@@ -35,14 +36,14 @@ public class DrinkController {
 
     /**
      * @Description 后台根据价格区间查找饮品
-     * @Param [price1, price2]
+     * @Param [low, high]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     @ResponseBody
     @RequestMapping("getDrinkByPrice")
     public ArrayList<Drink> getDrinkByPrice(
-            @RequestParam("price1") int price1, @RequestParam("price2") int price2){
-        return this.drinkService.getDrinkByPrice(price1, price2);
+            @RequestParam("low") int low, @RequestParam("high") int high){
+        return this.drinkService.getDrinkByPrice(low, high);
     }
 
     /**
@@ -58,35 +59,13 @@ public class DrinkController {
 
     /**
      * @Description 后台编辑饮品信息
-     * @Param [drinkId, dName, typeId, details, price, img, brix, temp, extra, size, evStar]
-     * @Return com.youcha.entity.Drink
+     * @Param [newDrink]
+     * @Return boolean
      */
     @ResponseBody
     @RequestMapping("updateDrink")
-    public boolean updateDrink(@RequestParam("drinkId") int drinkId,
-                             @RequestParam("dName") String dName,
-                             @RequestParam("typeId") int typeId,
-                             @RequestParam("details") String details,
-                             @RequestParam("price") int price,
-                             @RequestParam("img") String img,
-                             @RequestParam("brix") boolean brix,
-                             @RequestParam("temp") boolean temp,
-                             @RequestParam("extra") boolean extra,
-                             @RequestParam("size") boolean size,
-                             @RequestParam("evStar") int evStar){
-        Drink drink = new Drink();
-        drink.setDrinkId(drinkId);
-        drink.setDName(dName);
-        drink.setTypeId(typeId);
-        drink.setDetails(details);
-        drink.setPrice(price);
-        drink.setImg(img);
-        drink.setBrix(brix);
-        drink.setTemp(temp);
-        drink.setExtra(extra);
-        drink.setSize(size);
-        drink.setEvStar(evStar);
-        return this.drinkService.updateDrink(drink);
+    public boolean updateDrink(@RequestBody Drink newDrink){
+        return this.drinkService.updateDrink(newDrink);
     }
 
     /**
@@ -113,34 +92,12 @@ public class DrinkController {
 
     /**
      * @Description 后台新增饮品
-     * @Param [drinkId, dName, typeId, details, price, pic, brix, temp, extra, size, evStar]
-     * @Return java.lang.String
+     * @Param [newDrink]
+     * @Return boolean
      */
     @ResponseBody
     @RequestMapping("addDrink")
-    public boolean addDrink(@RequestParam("drinkId") int drinkId,
-                            @RequestParam("dName") String dName,
-                            @RequestParam("typeId") int typeId,
-                            @RequestParam("details") String details,
-                            @RequestParam("price") int price,
-                            @RequestParam("img") String img,
-                            @RequestParam("brix") boolean brix,
-                            @RequestParam("temp") boolean temp,
-                            @RequestParam("extra") boolean extra,
-                            @RequestParam("size") boolean size,
-                            @RequestParam("evStar") int evStar){
-        Drink drink = new Drink();
-        drink.setDrinkId(drinkId);
-        drink.setDName(dName);
-        drink.setTypeId(typeId);
-        drink.setDetails(details);
-        drink.setPrice(price);
-        drink.setImg(img);
-        drink.setBrix(brix);
-        drink.setTemp(temp);
-        drink.setExtra(extra);
-        drink.setSize(size);
-        drink.setEvStar(evStar);
-        return this.drinkService.addDrink(drink);
+    public boolean addDrink(@RequestBody Drink newDrink){
+        return this.drinkService.addDrink(newDrink);
     }
 }

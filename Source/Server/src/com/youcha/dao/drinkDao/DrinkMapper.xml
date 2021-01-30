@@ -7,8 +7,8 @@
         select count(drinkId) from drink
     </select>
 
-    <!--获取单个饮品-->
-    <select id="getSingleDrink" resultType="com.youcha.entity.Drink">
+    <!--根据饮品id获取饮品-->
+    <select id="getDrinkById" resultType="com.youcha.entity.Drink">
         select * from drink where drinkId = #{id}
     </select>
 
@@ -26,12 +26,12 @@
     </insert>
 
     <!--更新饮品-->
-    <update id="updateDrink">
+    <update id="updateDrink" parameterType="com.youcha.entity.Drink">
         update drink set
-        dName = #{dName}, typeId = #{typeId}, details = #{details}, price = #{price},
-        img = #{img}, brix = #{brix}, temp = #{temp}, extra = #{extra},
-        size = #{size}, evStar = #{evStar}
-        where typeId = #{drinkId}
+        dName = #{dName}, typeId = #{typeId}, details = #{details},
+        price = #{price}, img = #{img}, brix = #{brix}, temp = #{temp},
+        extra = #{extra}, size = #{size}, evStar = #{evStar}
+        where drinkId = #{drinkId}
     </update>
 
     <!--根据名称模糊查询-->
@@ -41,6 +41,6 @@
 
     <!--后台根据价格区间查找饮品-->
     <select id="getDrinkByPrice" resultType="com.youcha.entity.Drink">
-        select * from drink where price between #{price1} and #{price2}
+        select * from drink where price between #{low} and #{high}
     </select>
 </mapper>

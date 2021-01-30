@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youcha.dao.drinkDao.DrinkMapper">
 
     <!--获取饮品总数-->
@@ -11,5 +10,37 @@
     <!--获取单个饮品-->
     <select id="getSingleDrink" resultType="com.youcha.entity.Drink">
         select * from drink where drinkId = #{id}
+    </select>
+
+    <!--获取所有饮品信息-->
+    <select id="getAllDrinks" resultType="com.youcha.entity.Drink">
+        select * from drink
+    </select>
+
+    <!--新增饮品-->
+    <insert id="insertDrink" >
+        insert into
+        drink(drinkId, dName, typeId, details, price, img, brix, temp, extra, size, evStar)
+        value (#{drinkId}, #{dName}, #{typeId}, #{details}, #{price}, #{img},
+        #{brix}, #{temp}, #{extra}, #{size}, #{evStar})
+    </insert>
+
+    <!--更新饮品-->
+    <update id="updateDrink">
+        update drink set
+        dName = #{dName}, typeId = #{typeId}, details = #{details}, price = #{price},
+        img = #{img}, brix = #{brix}, temp = #{temp}, extra = #{extra},
+        size = #{size}, evStar = #{evStar}
+        where typeId = #{drinkId}
+    </update>
+
+    <!--根据名称模糊查询-->
+    <select id="getDrinkByName" resultType="com.youcha.entity.Drink">
+        select * from drink where dName like concat('%', #{str}, '%')
+    </select>
+
+    <!--后台根据价格区间查找饮品-->
+    <select id="getDrinkByPrice" resultType="com.youcha.entity.Drink">
+        select * from drink where price between #{price1} and #{price2}
     </select>
 </mapper>

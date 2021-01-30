@@ -1,6 +1,7 @@
 package com.youcha.dao.userDao;
 
 import com.youcha.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,5 +25,6 @@ public interface UserMapper {
     public void insertUser(User user);
 
     /*根据电话和密码查找用户*/
-    public User getUserByPhoneAndPassword(String phone, String password);
+    public User getUserByPhoneAndPassword(
+            @Param("phone") String phone, @Param("password") String password);
 }

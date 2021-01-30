@@ -1,6 +1,7 @@
 package com.youcha.dao.drinkDao;
 
 import com.youcha.entity.Drink;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 
@@ -30,5 +31,5 @@ public interface DrinkMapper {
     public ArrayList<Drink> getDrinkByName(String str);
 
     /*后台根据价格区间查找饮品*/
-    public ArrayList<Drink> getDrinkByPrice(int price1, int price2);
+    public ArrayList<Drink> getDrinkByPrice(@Param("low") int low, @Param("high") int high);
 }

@@ -33,14 +33,14 @@ public class DrinkService {
         drinkMapper = session.getMapper(DrinkMapper.class);
         //1.求出饮品数量
         int sum = drinkMapper.getDrinkNum();
-        System.out.println(sum);
+        System.out.println("数据库内饮品数量为：" + sum);
         //2.生成num个不重复的随机数，随机范围为[0-sum)
         int[] randomList = getRandom(sum, num);
         //3.将推荐移动到[1,sum]之间
         for (int i = 0; i < num; i++){
             randomList[i] += 1;
         }
-        System.out.println(randomList[0]+" "+randomList[1]+" " + randomList[2]);
+        System.out.println("随机饮品id为：" + randomList[0]+"，"+randomList[1]+"，" + randomList[2]);
         //4.获取num个饮品信息
         ArrayList<Drink> drinkList = new ArrayList<>(num);
         for (int i = 0; i < num; i++){
@@ -54,13 +54,13 @@ public class DrinkService {
 
     /**
      * @Description 后台根据价格区间查找饮品
-     * @Param [price1, price2]
+     * @Param [low, high]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
-    public ArrayList<Drink> getDrinkByPrice(int price1, int price2) {
+    public ArrayList<Drink> getDrinkByPrice(int low, int high) {
         SqlSession session = MyBatisUtil.getSession();
         drinkMapper = session.getMapper(DrinkMapper.class);
-        ArrayList<Drink> drinkList = drinkMapper.getDrinkByPrice(price1, price2);
+        ArrayList<Drink> drinkList = drinkMapper.getDrinkByPrice(low, high);
         System.out.println(drinkList);
         session.close();
         return drinkList;
@@ -81,6 +81,26 @@ public class DrinkService {
     }
 
     /**
+     * @Description 后台编辑饮品信息
+     * @Param [newDrink]
+     * @Return boolean
+     */
+    public boolean updateDrink(Drink newDrink) {
+        SqlSession session = MyBatisUtil.getSession();
+        drinkMapper = session.getMapper(DrinkMapper.class);
+        int result = drinkMapper.updateDrink(newDrink);
+        session.commit();
+        session.close();
+        if (result == 1){
+            System.out.println("更新成功");
+            return true;
+        } else {
+            System.out.println("更新失败");
+            return false;
+        }
+    }
+
+    /**
      * @Description 后台查看单个饮品信息
      * @Param [drinkId]
      * @Return com.youcha.entity.Drink
@@ -92,27 +112,6 @@ public class DrinkService {
         System.out.println(drink);
         session.close();
         return drink;
-    }
-
-    /**
-     * @Description 后台编辑饮品信息
-     * @Param [drink]
-     * @Return com.youcha.entity.Drink
-     */
-    public boolean updateDrink(Drink drink) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        int result = drinkMapper.updateDrink(drink);
-        System.out.println(result);
-        session.commit();
-        session.close();
-        if (result == 1){
-            //更新成功
-            return true;
-        } else {
-            //更新失败
-            return false;
-        }
     }
 
     /**
@@ -131,21 +130,21 @@ public class DrinkService {
 
     /**
      * @Description 后台新增饮品
-     * @Param [drink]
-     * @Return java.lang.String
+     * @Param [newDrink]
+     * @Return boolean
      */
-    public boolean addDrink(Drink drink) {
+    public boolean addDrink(Drink newDrink) {
         SqlSession session = MyBatisUtil.getSession();
         drinkMapper = session.getMapper(DrinkMapper.class);
         //1、判断drinkId是否存在
-        Drink drink1 = drinkMapper.getDrinkById(drink.getDrinkId());
+        Drink drink1 = drinkMapper.getDrinkById(newDrink.getDrinkId());
         if (drink1 != null){
             //2、若存在，返回“已存在，重新输入”
             session.close();
             return false;
         } else {
             //2、若不存在，插入，返回“插入成功”
-            int result = drinkMapper.insertDrink(drink);
+            int result = drinkMapper.insertDrink(newDrink);
             System.out.println(result);
             session.commit();
             session.close();

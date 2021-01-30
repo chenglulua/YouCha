@@ -20,7 +20,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private UserService userService = new UserService();
 
     /**
      * @Description 前端用户注册

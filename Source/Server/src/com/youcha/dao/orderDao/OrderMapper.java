@@ -1,6 +1,7 @@
 package com.youcha.dao.orderDao;
 
 import com.youcha.entity.OrderTable;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  */
 public interface OrderMapper {
 
-    /*根据用户id查找Order信息*/
-    public ArrayList<OrderTable> getOrderByUserId(int userId);
+    /*根据用户id和状态查找Order信息*/
+    public ArrayList<OrderTable> getOrderByUserIdAndStatus(
+            @Param("userId") int userId, @Param("status") int status);
 }
