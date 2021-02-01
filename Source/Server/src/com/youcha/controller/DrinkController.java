@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DrinkController {
 
     @Resource
-    private DrinkService drinkService = new DrinkService();
+    private DrinkService drinkService;
 
     /**
      * @Description 前端随机推荐num个饮品
@@ -69,13 +69,13 @@ public class DrinkController {
     }
 
     /**
-     * @Description 后台查看单个饮品信息
+     * @Description 后台根据id查看单个饮品信息
      * @Param [drinkId]
      * @Return com.youcha.entity.Drink
      */
     @ResponseBody
-    @RequestMapping("getDrink")
-    public Drink getDrink(@RequestParam("drinkId") int drinkId){
+    @RequestMapping("getDrinkById")
+    public Drink getDrinkById(@RequestParam("drinkId") int drinkId){
         return this.drinkService.getDrink(drinkId);
     }
 

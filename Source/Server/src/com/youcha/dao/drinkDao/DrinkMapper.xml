@@ -39,8 +39,13 @@
         select * from drink where dName like concat('%', #{str}, '%')
     </select>
 
-    <!--后台根据价格区间查找饮品-->
+    <!--根据价格区间查找饮品-->
     <select id="getDrinkByPrice" resultType="com.youcha.entity.Drink">
         select * from drink where price between #{low} and #{high}
     </select>
+
+    <!--更改drink表中的evStar-->
+    <update id="updateDrinkEvStar">
+        update drink set evStar = #{evStar} where drinkId = #{drinkId}
+    </update>
 </mapper>

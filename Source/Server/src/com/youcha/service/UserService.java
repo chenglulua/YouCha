@@ -2,8 +2,6 @@ package com.youcha.service;
 
 import com.youcha.dao.userDao.UserMapper;
 import com.youcha.entity.User;
-import com.youcha.util.MyBatisUtil;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +15,7 @@ import java.util.Random;
  * @Date 2021-01-10 15:25
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class UserService {
 
     @Resource
@@ -29,11 +27,8 @@ public class UserService {
      * @Return java.util.ArrayList<com.youcha.entity.User>
      */
     public List<User> getAllUsers() {
-        SqlSession session = MyBatisUtil.getSession();
-		userMapper = session.getMapper(UserMapper.class);
-        List<User> userList = userMapper.getAllUsers();
+        List<User> userList = this.userMapper.getAllUsers();
         System.out.println(userList);
-        session.close();
 		return userList;
     }
 
@@ -43,16 +38,8 @@ public class UserService {
      * @Return com.youcha.entity.User
      */
     public User login(String phone, String password) {
-        SqlSession session = MyBatisUtil.getSession();
-        userMapper = session.getMapper(UserMapper.class);
-        User user = userMapper.getUserByPhoneAndPassword(phone, password);
+        User user = this.userMapper.getUserByPhoneAndPassword(phone, password);
         System.out.println(user);
-        if (user != null){
-            System.out.println("登录成功");
-        } else {
-            System.out.println("登录失败");
-        }
-        session.close();
         return user;
     }
 
@@ -61,12 +48,10 @@ public class UserService {
      * @Param [phone, password]
      * @Return java.lang.String
      */
-    public String register(String phone, String password) {
-        SqlSession session = MyBatisUtil.getSession();
-        UserMapper userMapper = session.getMapper(UserMapper.class);
+    public boolean register(String phone, String password) {
         //1、判断手机号是否注册过
-        User user1 = userMapper.getUserByPhone(phone);
-        System.out.println(user1);
+        User user1 = this.userMapper.getUserByPhone(phone);
+        System.out.println("手机号是否注册过：" + user1);
         if (user1 == null){
             //2、没有注册过->分配存储
             //随机生成8位用户ID
@@ -76,7 +61,7 @@ public class UserService {
             do {
                 //4、存在->重新分配
                 userId = getRandomUserId(8);
-                user2 = userMapper.getUserById(userId);
+                user2 = this.userMapper.getUserById(userId);
             } while (user2 != null);
             //4、不存在->存储user
             User user = new User();
@@ -84,14 +69,13 @@ public class UserService {
             user.setUName("用户" + userId);
             user.setPhone(phone);
             user.setPassword(password);
-            userMapper.insertUser(user);
-            session.commit();
+            boolean result = this.userMapper.insertUser(user);
+            System.out.println(result);
+            return result;
         } else {
             //2、注册过->返回false
-            return "false";
+            return false;
         }
-        session.close();
-        return "true";
     }
 
     /**
@@ -108,7 +92,7 @@ public class UserService {
             str.append(random.nextInt(10));
         }
         //将字符串转换为数字并输出
-        System.out.println(str.toString());
+        System.out.println("新增用户id为：" + str.toString());
         return str.toString();
     }
 }

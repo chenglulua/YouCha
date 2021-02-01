@@ -2,8 +2,6 @@ package com.youcha.service;
 
 import com.youcha.dao.drinkDao.DrinkMapper;
 import com.youcha.entity.Drink;
-import com.youcha.util.MyBatisUtil;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +15,7 @@ import java.util.Random;
  * @Date 2021-01-10 15:25
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class DrinkService {
 
     @Resource
@@ -29,10 +27,8 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> randomDrinks(int num) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
         //1.求出饮品数量
-        int sum = drinkMapper.getDrinkNum();
+        int sum = this.drinkMapper.getDrinkNum();
         System.out.println("数据库内饮品数量为：" + sum);
         //2.生成num个不重复的随机数，随机范围为[0-sum)
         int[] randomList = getRandom(sum, num);
@@ -40,15 +36,15 @@ public class DrinkService {
         for (int i = 0; i < num; i++){
             randomList[i] += 1;
         }
-        System.out.println("随机饮品id为：" + randomList[0]+"，"+randomList[1]+"，" + randomList[2]);
+        System.out.println("随机饮品id为：" + randomList[0]+ "，" +
+                randomList[1] + "，" + randomList[2]);
         //4.获取num个饮品信息
         ArrayList<Drink> drinkList = new ArrayList<>(num);
         for (int i = 0; i < num; i++){
-            Drink drink = drinkMapper.getDrinkById(randomList[i]);
+            Drink drink = this.drinkMapper.getDrinkById(randomList[i]);
             drinkList.add(drink);
         }
         System.out.println(drinkList);
-        session.close();
         return drinkList;
     }
 
@@ -58,11 +54,8 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getDrinkByPrice(int low, int high) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        ArrayList<Drink> drinkList = drinkMapper.getDrinkByPrice(low, high);
+        ArrayList<Drink> drinkList = this.drinkMapper.getDrinkByPrice(low, high);
         System.out.println(drinkList);
-        session.close();
         return drinkList;
     }
 
@@ -72,11 +65,8 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getDrinksByName(String str) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        ArrayList<Drink> drinkList = drinkMapper.getDrinkByName(str);
+        ArrayList<Drink> drinkList = this.drinkMapper.getDrinkByName(str);
         System.out.println(drinkList);
-        session.close();
         return drinkList;
     }
 
@@ -86,11 +76,7 @@ public class DrinkService {
      * @Return boolean
      */
     public boolean updateDrink(Drink newDrink) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        int result = drinkMapper.updateDrink(newDrink);
-        session.commit();
-        session.close();
+        int result = this.drinkMapper.updateDrink(newDrink);
         if (result == 1){
             System.out.println("更新成功");
             return true;
@@ -106,11 +92,8 @@ public class DrinkService {
      * @Return com.youcha.entity.Drink
      */
     public Drink getDrink(int drinkId) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        Drink drink = drinkMapper.getDrinkById(drinkId);
+        Drink drink = this.drinkMapper.getDrinkById(drinkId);
         System.out.println(drink);
-        session.close();
         return drink;
     }
 
@@ -120,11 +103,8 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getAllDrinks() {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
-        ArrayList<Drink> drinkList = drinkMapper.getAllDrinks();
+        ArrayList<Drink> drinkList = this.drinkMapper.getAllDrinks();
         System.out.println(drinkList);
-        session.close();
         return drinkList;
     }
 
@@ -134,22 +114,29 @@ public class DrinkService {
      * @Return boolean
      */
     public boolean addDrink(Drink newDrink) {
-        SqlSession session = MyBatisUtil.getSession();
-        drinkMapper = session.getMapper(DrinkMapper.class);
         //1、判断drinkId是否存在
-        Drink drink1 = drinkMapper.getDrinkById(newDrink.getDrinkId());
+        Drink drink1 = this.drinkMapper.getDrinkById(newDrink.getDrinkId());
         if (drink1 != null){
             //2、若存在，返回“已存在，重新输入”
-            session.close();
+            System.out.println("饮品已存在，请重新输入");
             return false;
         } else {
             //2、若不存在，插入，返回“插入成功”
-            int result = drinkMapper.insertDrink(newDrink);
-            System.out.println(result);
-            session.commit();
-            session.close();
+            int result = this.drinkMapper.insertDrink(newDrink);
+            System.out.println("新增饮品成功：" + result);
             return true;
         }
+    }
+
+    /**
+     * @Description 前端更改drink表中的evStar
+     * @Param [evStar]
+     * @Return boolean
+     */
+    public boolean updateDrinkEvStar(int drinkId, int evStar) {
+        boolean result = drinkMapper.updateDrinkEvStar(drinkId, evStar);
+        System.out.println("evStar更改结果：" + result);
+        return result;
     }
 
     /**

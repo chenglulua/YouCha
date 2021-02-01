@@ -2,10 +2,9 @@ package com.youcha;
 
 import com.youcha.controller.*;
 import com.youcha.dao.typeDao.TypeMapper;
+import com.youcha.entity.Assessment;
 import com.youcha.entity.Drink;
-import com.youcha.entity.OrderTable;
 import com.youcha.entity.Type;
-import com.youcha.service.DrinkService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -38,8 +37,21 @@ public class MyBatisTest {
 	@Test
 	public void main() {
 
-		ArrayList<Type> types = typeController.getAllTypes();
-		System.out.println(types);
+//		Drink drink = new Drink();
+//		drink.setDrinkId(100);
+//		drink.setDName("fff");
+//		drink.setTypeId(1);
+//		drink.setDetails("");
+//		drink.setPrice(1);
+//		drink.setImg("");
+//		drink.setBrix(false);
+//		drink.setTemp(false);
+//		drink.setExtra(false);
+//		drink.setSize(false);
+//		drink.setEvStar(2);
+
+//		ArrayList<Type> types = typeController.getAllTypes();
+//		System.out.println(types);
 
 //		ApplicationContext ac = new ClassPathXmlApplicationContext(
 //				"/web/WEB-INF/applicationContext.xml");

@@ -10,4 +10,9 @@
        select * from orderTable
        where ordertable.userId = #{userId} and ordertable.status = #{status}
    </select>
+
+    <!--更新评价assId-->
+    <update id="updateOrderAss">
+        update ordertable set assId = #{assId} where orderId = #{orderId}
+    </update>
 </mapper>

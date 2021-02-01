@@ -15,4 +15,7 @@ public interface OrderMapper {
     /*根据用户id和状态查找Order信息*/
     public ArrayList<OrderTable> getOrderByUserIdAndStatus(
             @Param("userId") int userId, @Param("status") int status);
+
+    /*更新评价assId*/
+    public boolean updateOrderAss(@Param("orderId") int orderId, @Param("assId") int assId);
 }

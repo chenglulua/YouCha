@@ -30,6 +30,10 @@ public interface DrinkMapper {
     /*根据名称模糊查询*/
     public ArrayList<Drink> getDrinkByName(String str);
 
-    /*后台根据价格区间查找饮品*/
+    /*根据价格区间查找饮品*/
     public ArrayList<Drink> getDrinkByPrice(@Param("low") int low, @Param("high") int high);
+
+    /*更改drink表中的evStar*/
+    public boolean updateDrinkEvStar(
+            @Param("drinkId") int drinkId, @Param("evStar") int evStar);
 }

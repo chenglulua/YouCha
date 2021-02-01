@@ -20,7 +20,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserService userService = new UserService();
+    private UserService userService;
 
     /**
      * @Description 前端用户注册
@@ -29,7 +29,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("register")
-    public String register(@RequestParam("phone") String phone,
+    public boolean register(@RequestParam("phone") String phone,
                            @RequestParam("password") String password){
         return this.userService.register(phone, password);
     }

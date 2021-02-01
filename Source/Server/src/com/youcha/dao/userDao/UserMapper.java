@@ -22,7 +22,7 @@ public interface UserMapper {
     public User getUserById(String userId);
 
     /*插入用户*/
-    public void insertUser(User user);
+    public boolean insertUser(User user);
 
     /*根据电话和密码查找用户*/
     public User getUserByPhoneAndPassword(

@@ -3,4 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youcha.dao.assessmentDao.AssessmentMapper">
 
+    <!--根据assId获取评价详情-->
+    <select id="getAssById" resultType="com.youcha.entity.Assessment">
+        select * from assessment where assId = #{assId}
+    </select>
+
+    <!--获取评价总数-->
+    <select id="getAllAss" resultType="java.lang.Integer">
+        select count(assId) from assessment
+    </select>
+
+    <!--新增评价-->
+    <insert id="addAss" parameterType="com.youcha.entity.Assessment">
+        insert into assessment(assId, drinkId, star)
+        value (#{assId}, #{drinkId}, #{star})
+    </insert>
+
+    <!--根据drinkId计算evStar-->
+    <select id="getEvStarByDrinkId" resultType="java.lang.Integer">
+        select sum(star)/count(drinkId) from assessment where drinkId = #{drinkId}
+    </select>
 </mapper>

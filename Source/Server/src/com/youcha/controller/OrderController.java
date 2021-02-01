@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class OrderController {
 
     @Resource
-    private OrderService orderService = new OrderService();
+    private OrderService orderService;
 
     /**
      * @Description 前端根据userId和订单状态获取用户订单
