@@ -28,11 +28,17 @@ public class TypeService {
      * @Return java.util.ArrayList<com.youcha.entity.Type>
      */
     public ArrayList<Type> getAllTypes() {
-        SqlSession session = MyBatisUtil.getSession();
-        typeMapper = session.getMapper(TypeMapper.class);
-        ArrayList<Type> typeList = typeMapper.getAllTypes();
+        if (typeMapper == null){
+            System.out.println("null");
+        } else {
+            System.out.println("yes");
+        }
+//        SqlSession session = MyBatisUtil.getSession();
+//        typeMapper = session.getMapper(TypeMapper.class);
+//        ArrayList<Type> typeList = typeMapper.getAllTypes();
+        ArrayList<Type> typeList = this.typeMapper.getAllTypes();
         System.out.println(typeList);
-        session.close();
+//        session.close();
         return typeList;
     }
 }

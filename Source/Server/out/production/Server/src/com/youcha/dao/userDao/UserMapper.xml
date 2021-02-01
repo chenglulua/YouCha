@@ -24,6 +24,6 @@
 
     <!--根据电话和密码查找用户-->
     <select id="getUserByPhoneAndPassword" resultType="com.youcha.entity.User">
-        select * from user where phone = #{arg0} and password = #{arg1}
+        select * from user where phone = #{phone} and password = #{password}
     </select>
 </mapper>

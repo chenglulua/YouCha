@@ -19,7 +19,7 @@ public class MyBatisUtil {
 	static {
 		InputStream is;
 		try {
-			is = Resources.getResourceAsStream("mybatis.xml");
+			is = Resources.getResourceAsStream("web/mybatis.xml");
 			sessionFactory = new SqlSessionFactoryBuilder().build(is);
 		} catch (IOException e) {
             e.printStackTrace();

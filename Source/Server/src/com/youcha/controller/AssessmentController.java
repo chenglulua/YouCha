@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * @Description Assessment控制器类
  * @Date 2021-01-30 15:24
  */
-@Controller
+@Controller("assessmentController")
 @RequestMapping("assessment")
 public class AssessmentController {
 

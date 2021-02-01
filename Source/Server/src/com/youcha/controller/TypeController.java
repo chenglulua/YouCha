@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class TypeController {
 
     @Resource
-    private TypeService typeService = new TypeService();
+    private TypeService typeService;
 
     /**
      * @Description 后台获取所有类型

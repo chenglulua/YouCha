@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youcha.dao.orderDao.OrderMapper">
 
-    <!--根据用户id查找Order信息-->
-    <select id="getOrderByUserId" resultType="com.youcha.entity.OrderTable">
-        select * from orderTable where userId = #{userId}
-    </select>
+    <!--根据用户id和状态查找Order信息-->
+    <select id="getOrderByUserIdAndStatus" resultType="com.youcha.entity.OrderTable">
+        <!--select drink.dName, drink.img, orderTable.oBrix, orderTable.time, orderTable.oTemp, orderTable.oExtra,
+        orderTable.oSize, orderTable.num, orderTable.tPrice from orderTable, drink
+        where ordertable.userId = #{userId}, ordertable.status = #{status} and ordertable.drinkId = drink.drinkId-->
+       select * from orderTable
+       where ordertable.userId = #{userId} and ordertable.status = #{status}
+   </select>
 </mapper>
