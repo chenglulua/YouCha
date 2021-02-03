@@ -33,4 +33,49 @@ public class OrderController {
             @RequestParam("userId") int userId, @RequestParam("status") int status){
         return this.orderService.getOrderByUserIdAndStatus(userId, status);
     }
+
+    /**
+     * @Description 后台根据status获取订单详情
+     * @Param [status]
+     * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
+     */
+    @ResponseBody
+    @RequestMapping("getOrderByStatus")
+    public ArrayList<OrderTable> getOrderByStatus(@RequestParam("status") int status) {
+        return this.orderService.getOrderByStatus(status);
+    }
+
+    /**
+     * @Description 后台更改订单status状态
+     * @Param [oId]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("updateOrderStatusByOId")
+    public boolean updateOrderStatusByOId(@RequestParam("oId") int oId) {
+        return this.orderService.updateOrderStatusByOId(oId);
+    }
+
+    /**
+     * @Description 后台根据oId查找订单
+     * @Param [oId]
+     * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
+     */
+    @ResponseBody
+    @RequestMapping("getOrderByOId")
+    public ArrayList<OrderTable> getOrderByOId(@RequestParam("oId") int oId) {
+        return this.orderService.getOrderByOId(oId);
+    }
+
+    /**
+     * @Description 后台根据价格区间查找订单
+     * @Param [low, high]
+     * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
+     */
+    @ResponseBody
+    @RequestMapping("getOrderByTPrice")
+    public ArrayList<OrderTable> getOrderByTPrice(
+            @RequestParam("low") int low, @RequestParam("high") int high) {
+        return this.orderService.getOrderByTPrice(low, high);
+    }
 }

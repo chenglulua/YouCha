@@ -61,7 +61,7 @@ public class UserService {
             do {
                 //4、存在->重新分配
                 userId = getRandomUserId(8);
-                user2 = this.userMapper.getUserById(userId);
+                user2 = this.userMapper.getUserByUserId(userId);
             } while (user2 != null);
             //4、不存在->存储user
             User user = new User();
@@ -76,6 +76,17 @@ public class UserService {
             //2、注册过->返回false
             return false;
         }
+    }
+
+    /**
+     * @Description 后台根据用户Id获取用户信息
+     * @Param [userId]
+     * @Return com.youcha.entity.User
+     */
+    public User getUserByUserId(String userId) {
+        User user = this.userMapper.getUserByUserId(userId);
+        System.out.println(user);
+        return user;
     }
 
     /**

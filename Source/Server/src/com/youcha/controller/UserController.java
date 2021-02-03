@@ -56,4 +56,15 @@ public class UserController {
     public List<User> getAllUsers(){
         return this.userService.getAllUsers();
     }
+
+    /**
+     * @Description 后台根据用户Id获取用户信息
+     * @Param [userId]
+     * @Return com.youcha.entity.User
+     */
+    @ResponseBody
+    @RequestMapping("getUserByUserId")
+    public User getUserByUserId(@RequestParam("userId") String userId){
+        return this.userService.getUserByUserId(userId);
+    }
 }

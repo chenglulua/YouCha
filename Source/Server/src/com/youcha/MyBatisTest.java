@@ -4,6 +4,7 @@ import com.youcha.controller.*;
 import com.youcha.dao.typeDao.TypeMapper;
 import com.youcha.entity.Assessment;
 import com.youcha.entity.Drink;
+import com.youcha.entity.OrderTable;
 import com.youcha.entity.Type;
 import org.junit.Test;
 import org.junit.runner.RunWith;

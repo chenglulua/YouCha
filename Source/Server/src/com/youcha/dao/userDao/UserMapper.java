@@ -19,7 +19,7 @@ public interface UserMapper {
     public User getUserByPhone(String phone);
 
     /*根据用户Id查找用户*/
-    public User getUserById(String userId);
+    public User getUserByUserId(String userId);
 
     /*插入用户*/
     public boolean insertUser(User user);
