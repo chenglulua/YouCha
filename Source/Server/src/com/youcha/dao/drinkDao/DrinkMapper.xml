@@ -48,4 +48,9 @@
     <update id="updateDrinkEvStar">
         update drink set evStar = #{evStar} where drinkId = #{drinkId}
     </update>
+
+    <!--删除饮品-->
+    <delete id="deleteDrinkById">
+        delete from drink where drinkId = #{drinkId}
+    </delete>
 </mapper>

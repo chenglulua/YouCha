@@ -36,4 +36,7 @@ public interface DrinkMapper {
     /*更改drink表中的evStar*/
     public boolean updateDrinkEvStar(
             @Param("drinkId") int drinkId, @Param("evStar") int evStar);
+
+    /*删除饮品*/
+    public boolean deleteDrinkById(int drinkId);
 }

@@ -64,7 +64,7 @@ public class DrinkController {
      */
     @ResponseBody
     @RequestMapping("updateDrink")
-    public boolean updateDrink(@RequestBody Drink newDrink){
+    public boolean updateDrink(@RequestParam Drink newDrink){
         return this.drinkService.updateDrink(newDrink);
     }
 
@@ -97,7 +97,18 @@ public class DrinkController {
      */
     @ResponseBody
     @RequestMapping("addDrink")
-    public boolean addDrink(@RequestBody Drink newDrink){
+    public boolean addDrink(@RequestParam Drink newDrink){
         return this.drinkService.addDrink(newDrink);
+    }
+
+    /**
+     * @Description 后台删除饮品
+     * @Param [drinkId]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("deleteDrinkById")
+    public boolean deleteDrinkById(@RequestParam("drinkId") int drinkId){
+        return this.drinkService.deleteDrinkById(drinkId);
     }
 }

@@ -140,6 +140,17 @@ public class DrinkService {
     }
 
     /**
+     * @Description 后台删除饮品
+     * @Param [drinkId]
+     * @Return boolean
+     */
+    public boolean deleteDrinkById(int drinkId) {
+        boolean result = drinkMapper.deleteDrinkById(drinkId);
+        System.out.println(result);
+        return result;
+    }
+
+    /**
      * @Description 在[0-sum)中生成num个不重复的随机数
      * @Param [sum, num]
      * @Return int[]

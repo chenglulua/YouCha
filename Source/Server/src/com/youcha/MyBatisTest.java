@@ -37,6 +37,9 @@ public class MyBatisTest {
 	@Test
 	public void main() {
 
+		ArrayList<Type> types = typeController.getAllTypes();
+		System.out.println(types);
+
 //		Drink drink = new Drink();
 //		drink.setDrinkId(100);
 //		drink.setDName("fff");
@@ -49,9 +52,6 @@ public class MyBatisTest {
 //		drink.setExtra(false);
 //		drink.setSize(false);
 //		drink.setEvStar(2);
-
-//		ArrayList<Type> types = typeController.getAllTypes();
-//		System.out.println(types);
 
 //		ApplicationContext ac = new ClassPathXmlApplicationContext(
 //				"/web/WEB-INF/applicationContext.xml");
