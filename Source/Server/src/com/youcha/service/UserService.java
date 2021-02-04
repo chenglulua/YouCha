@@ -90,6 +90,17 @@ public class UserService {
     }
 
     /**
+     * @Description 前端根据userId修改uName
+     * @Param [uName, userId]
+     * @Return boolean
+     */
+    public boolean updateUNameByUserId(String uName, String userId) {
+        boolean result = this.userMapper.updateUNameByUserId(uName, userId);
+        System.out.println(result);
+        return result;
+    }
+
+    /**
      * @Description 生成8位随机数
      * @Param [length]
      * @Return java.lang.String

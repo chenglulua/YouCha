@@ -67,4 +67,16 @@ public class UserController {
     public User getUserByUserId(@RequestParam("userId") String userId){
         return this.userService.getUserByUserId(userId);
     }
+
+    /**
+     * @Description 前端根据userId修改uName
+     * @Param [uName, userId]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("updateUNameByUserId")
+    public boolean updateUNameByUserId(
+            @RequestParam("uName") String uName, @RequestParam("userId") String userId) {
+        return this.userService.updateUNameByUserId(uName, userId);
+    }
 }

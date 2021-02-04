@@ -27,4 +27,8 @@ public interface UserMapper {
     /*根据电话和密码查找用户*/
     public User getUserByPhoneAndPassword(
             @Param("phone") String phone, @Param("password") String password);
+
+    /*根据userId修改uName*/
+    public boolean updateUNameByUserId(
+            @Param("uName") String uName, @Param("userId") String userId);
 }
