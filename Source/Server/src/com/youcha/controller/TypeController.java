@@ -4,6 +4,7 @@ import com.youcha.entity.Type;
 import com.youcha.service.TypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -27,19 +28,19 @@ public class TypeController {
      * @Return java.util.ArrayList<com.youcha.entity.Type>
      */
     @ResponseBody
-    @RequestMapping("getAllTypes")
-    public ArrayList<Type> getAllTypes(){
+    @RequestMapping("getAllType")
+    public ArrayList<Type> getAllType(){
         return this.typeService.getAllTypes();
     }
 
     /**
-     * @Description 后台根据id获取类型
+     * @Description 后台根据typeId获取类型
      * @Param [typeId]
      * @Return com.youcha.entity.Type
      */
     @ResponseBody
-    @RequestMapping("getTypeById")
-    public Type getTypeById(int typeId) {
+    @RequestMapping("getTypeByTypeId")
+    public Type getTypeByTypeId(@RequestParam("typeId") int typeId) {
         return this.typeService.getTypeById(typeId);
     }
 }

@@ -33,11 +33,11 @@ public class OrderService {
     }
 
     /**
-     * @Description 前端更新order表，插入评价assId
+     * @Description 前端更新订单表，插入assId
      * @Param [orderId, assId]
      * @Return boolean
      */
-    public boolean updateOrderAss(int orderId, int assId) {
+    public boolean updateOrderAssByOrderId(int orderId, int assId) {
         boolean result = this.orderMapper.updateOrderAss(orderId, assId);
         System.out.println("插入assId的结果为：" + result);
         return result;

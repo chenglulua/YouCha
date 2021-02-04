@@ -32,4 +32,9 @@
     <select id="getOrderByTPrice" resultType="com.youcha.entity.OrderTable">
         select * from ordertable where tPrice between #{low} and #{high}
     </select>
+
+    <!--根据评价id获取订单-->
+    <select id="getOrderByAssId" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where assId = #{assId}
+    </select>
 </mapper>

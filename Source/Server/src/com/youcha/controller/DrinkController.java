@@ -35,7 +35,7 @@ public class DrinkController {
     }
 
     /**
-     * @Description 后台根据价格区间查找饮品
+     * @Description 后台根据price区间查找饮品
      * @Param [low, high]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
@@ -47,18 +47,18 @@ public class DrinkController {
     }
 
     /**
-     * @Description 后台根据名称模糊查找饮品
+     * @Description 后台根据dName模糊查找饮品
      * @Param [str]
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     @ResponseBody
-    @RequestMapping("getDrinkByName")
-    public ArrayList<Drink> getDrinkByName(@RequestParam("str") String str){
+    @RequestMapping("getDrinkByDName")
+    public ArrayList<Drink> getDrinkByDName(@RequestParam("str") String str){
         return this.drinkService.getDrinksByName(str);
     }
 
     /**
-     * @Description 后台编辑饮品信息
+     * @Description 后台编辑饮品
      * @Param [newDrink]
      * @Return boolean
      */
@@ -69,13 +69,13 @@ public class DrinkController {
     }
 
     /**
-     * @Description 后台根据id查看单个饮品信息
+     * @Description 后台根据drinkId查看饮品
      * @Param [drinkId]
      * @Return com.youcha.entity.Drink
      */
     @ResponseBody
-    @RequestMapping("getDrinkById")
-    public Drink getDrinkById(@RequestParam("drinkId") int drinkId){
+    @RequestMapping("getDrinkByDrinkId")
+    public Drink getDrinkByDrinkId(@RequestParam("drinkId") int drinkId){
         return this.drinkService.getDrink(drinkId);
     }
 
@@ -85,8 +85,8 @@ public class DrinkController {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     @ResponseBody
-    @RequestMapping("getAllDrinks")
-    public ArrayList<Drink> getAllDrinks(){
+    @RequestMapping("getAllDrink")
+    public ArrayList<Drink> getAllDrink(){
         return this.drinkService.getAllDrinks();
     }
 
@@ -102,13 +102,13 @@ public class DrinkController {
     }
 
     /**
-     * @Description 后台删除饮品
+     * @Description 后台根据drinkId删除饮品
      * @Param [drinkId]
      * @Return boolean
      */
     @ResponseBody
-    @RequestMapping("deleteDrinkById")
-    public boolean deleteDrinkById(@RequestParam("drinkId") int drinkId){
+    @RequestMapping("deleteDrinkByDrinkId")
+    public boolean deleteDrinkByDrinkId(@RequestParam("drinkId") int drinkId){
         return this.drinkService.deleteDrinkById(drinkId);
     }
 }

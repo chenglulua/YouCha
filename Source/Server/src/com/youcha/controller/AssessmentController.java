@@ -29,7 +29,7 @@ public class AssessmentController {
     private DrinkService drinkService;
 
     /**
-     * @Description 前端根据assId获取评价详情
+     * @Description 前端根据assId获取评价
      * @Param [assId]
      * @Return com.youcha.entity.Assessment
      */
@@ -41,7 +41,7 @@ public class AssessmentController {
 
     /**
      * @Description 前端新增评价
-     * @Param [drinkId, star]
+     * @Param [drinkId, star, orderId]
      * @Return boolean
      */
     @ResponseBody
@@ -51,12 +51,12 @@ public class AssessmentController {
                           @RequestParam("orderId") int orderId) {
         //1、插入assessment表
         int assId = this.assService.addAss(drinkId, star);
-        //2、将assId插入order表
-        boolean result1 = this.orderService.updateOrderAss(orderId, assId);
-        //3、根据drinkId在assessment表中计算evStar
-        int evStar = this.assService.getStarSum(drinkId);
+        //2、更新订单表，插入assId
+        boolean result1 = this.orderService.updateOrderAssByOrderId(orderId, assId);
+        //3、根据drinkId在评价表中计算evStar
+        int evStar = this.assService.getEvStarByDrinkId(drinkId);
         //4、更改drink表中的evStar
-        boolean result2 = this.drinkService.updateDrinkEvStar(drinkId, evStar);
+        boolean result2 = this.drinkService.updateDrinkEvStarByDrinkId(drinkId, evStar);
         return result2;
     }
 
@@ -72,7 +72,7 @@ public class AssessmentController {
     }
 
     /**
-     * @Description 后台根据饮品id获取评论
+     * @Description 后台根据drinkId获取评论
      * @Param [drinkId]
      * @Return java.util.ArrayList<com.youcha.entity.Assessment>
      */
@@ -83,7 +83,7 @@ public class AssessmentController {
     }
 
     /**
-     * @Description 后台根据星级获取评论
+     * @Description 后台根据star获取评论
      * @Param [star]
      * @Return java.util.ArrayList<com.youcha.entity.Assessment>
      */

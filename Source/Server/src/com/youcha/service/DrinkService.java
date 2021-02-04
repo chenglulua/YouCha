@@ -133,7 +133,7 @@ public class DrinkService {
      * @Param [evStar]
      * @Return boolean
      */
-    public boolean updateDrinkEvStar(int drinkId, int evStar) {
+    public boolean updateDrinkEvStarByDrinkId(int drinkId, int evStar) {
         boolean result = drinkMapper.updateDrinkEvStar(drinkId, evStar);
         System.out.println("evStar更改结果：" + result);
         return result;

@@ -52,13 +52,13 @@ public class UserController {
      * @Return java.util.ArrayList<com.youcha.entity.User>
      */
     @ResponseBody
-    @RequestMapping("getAllUsers")
-    public List<User> getAllUsers(){
+    @RequestMapping("getAllUser")
+    public List<User> getAllUser(){
         return this.userService.getAllUsers();
     }
 
     /**
-     * @Description 后台根据用户Id获取用户信息
+     * @Description 后台根据userId获取用户信息
      * @Param [userId]
      * @Return com.youcha.entity.User
      */

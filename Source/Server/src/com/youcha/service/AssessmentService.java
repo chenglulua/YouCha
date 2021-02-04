@@ -21,7 +21,7 @@ public class AssessmentService {
     private AssessmentMapper assMapper;
 
     /**
-     * @Description 根据assId获取评价详情
+     * @Description 前端根据assId获取评价
      * @Param [assId]
      * @Return com.youcha.entity.Assessment
      */
@@ -33,7 +33,7 @@ public class AssessmentService {
 
     /**
      * @Description 前端新增评价
-     * @Param [drinkId, oId]
+     * @Param [drinkId, star]
      * @Return boolean
      */
     public int addAss(int drinkId, int star) {
@@ -57,7 +57,7 @@ public class AssessmentService {
      * @Param [drinkId]
      * @Return int
      */
-    public int getStarSum(int drinkId) {
+    public int getEvStarByDrinkId(int drinkId) {
         int evStar = this.assMapper.getEvStarByDrinkId(drinkId);
         System.out.println("平均分：" + evStar);
         return evStar;

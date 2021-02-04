@@ -23,7 +23,7 @@ public class OrderController {
     private OrderService orderService;
 
     /**
-     * @Description 前端根据userId和订单状态获取用户订单
+     * @Description 前端根据userId和status获取订单
      * @Param [userId, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
@@ -35,7 +35,7 @@ public class OrderController {
     }
 
     /**
-     * @Description 后台根据status获取订单详情
+     * @Description 后台根据status获取订单
      * @Param [status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     /**
-     * @Description 后台更改订单status状态
+     * @Description 后台根据oId更改status
      * @Param [oId]
      * @Return boolean
      */
@@ -68,7 +68,7 @@ public class OrderController {
     }
 
     /**
-     * @Description 后台根据价格区间查找订单
+     * @Description 后台根据price区间查找订单
      * @Param [low, high]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
@@ -80,7 +80,7 @@ public class OrderController {
     }
 
     /**
-     * @Description 后台根据评价id获取订单
+     * @Description 后台根据assId获取订单
      * @Param [assId]
      * @Return com.youcha.entity.OrderTable
      */

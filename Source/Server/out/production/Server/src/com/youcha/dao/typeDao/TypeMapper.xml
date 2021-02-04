@@ -6,4 +6,9 @@
     <select id="getAllTypes" resultType="com.youcha.entity.Type">
         select * from type
     </select>
+
+    <!--根据id获取类型-->
+    <select id="getTypeById" resultType="com.youcha.entity.Type">
+        select * from type where typeId = #{typeId}
+    </select>
 </mapper>
