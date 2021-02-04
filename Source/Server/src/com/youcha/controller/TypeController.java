@@ -31,4 +31,15 @@ public class TypeController {
     public ArrayList<Type> getAllTypes(){
         return this.typeService.getAllTypes();
     }
+
+    /**
+     * @Description 后台根据id获取类型
+     * @Param [typeId]
+     * @Return com.youcha.entity.Type
+     */
+    @ResponseBody
+    @RequestMapping("getTypeById")
+    public Type getTypeById(int typeId) {
+        return this.typeService.getTypeById(typeId);
+    }
 }

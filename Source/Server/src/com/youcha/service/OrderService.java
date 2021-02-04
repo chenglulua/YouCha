@@ -86,4 +86,15 @@ public class OrderService {
         System.out.println(orders);
         return orders;
     }
+
+    /**
+     * @Description 后台根据评价id获取订单
+     * @Param [assId]
+     * @Return com.youcha.entity.OrderTable
+     */
+    public OrderTable getOrderByAssId(int assId) {
+        OrderTable order = this.orderMapper.getOrderByAssId(assId);
+        System.out.println(order);
+        return order;
+    }
 }

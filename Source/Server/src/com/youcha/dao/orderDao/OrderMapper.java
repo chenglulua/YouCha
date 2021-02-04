@@ -31,4 +31,7 @@ public interface OrderMapper {
     /*根据总价格区间查找订单信息*/
     public ArrayList<OrderTable> getOrderByTPrice(
             @Param("low") int low, @Param("high") int high);
+
+    /*根据评价id获取订单*/
+    public OrderTable getOrderByAssId(int assId);
 }

@@ -9,7 +9,7 @@
     </select>
 
     <!--获取评价总数-->
-    <select id="getAllAss" resultType="java.lang.Integer">
+    <select id="getAllAssSum" resultType="java.lang.Integer">
         select count(assId) from assessment
     </select>
 
@@ -22,5 +22,20 @@
     <!--根据drinkId计算evStar-->
     <select id="getEvStarByDrinkId" resultType="java.lang.Integer">
         select sum(star)/count(drinkId) from assessment where drinkId = #{drinkId}
+    </select>
+
+    <!--获取所有评价-->
+    <select id="getAllAss" resultType="com.youcha.entity.Assessment">
+        select * from assessment
+    </select>
+
+    <!--根据drinkId获取评价-->
+    <select id="getAssByDrinkId" resultType="com.youcha.entity.Assessment">
+        select * from assessment where drinkId = #{drinkId}
+    </select>
+
+    <!--根据star获取评价-->
+    <select id="getAssByStar" resultType="com.youcha.entity.Assessment">
+        select * from assessment where star = #{star}
     </select>
 </mapper>

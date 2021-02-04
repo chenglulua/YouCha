@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 
 /**
  * @ClassName AssessmentController
@@ -57,5 +58,38 @@ public class AssessmentController {
         //4、更改drink表中的evStar
         boolean result2 = this.drinkService.updateDrinkEvStar(drinkId, evStar);
         return result2;
+    }
+
+    /**
+     * @Description 后台获取所有评论
+     * @Param []
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    @ResponseBody
+    @RequestMapping("getAllAss")
+    public ArrayList<Assessment> getAllAss() {
+        return this.assService.getAllAss();
+    }
+
+    /**
+     * @Description 后台根据饮品id获取评论
+     * @Param [drinkId]
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    @ResponseBody
+    @RequestMapping("getAssByDrinkId")
+    public ArrayList<Assessment> getAssByDrinkId(@RequestParam("drinkId") int drinkId) {
+        return this.assService.getAssByDrinkId(drinkId);
+    }
+
+    /**
+     * @Description 后台根据星级获取评论
+     * @Param [star]
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    @ResponseBody
+    @RequestMapping("getAssByStar")
+    public ArrayList<Assessment> getAssByStar(@RequestParam("star") int star) {
+        return this.assService.getAssByStar(star);
     }
 }

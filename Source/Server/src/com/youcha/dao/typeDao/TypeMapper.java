@@ -13,4 +13,7 @@ public interface TypeMapper {
 
     /*获取所有类型信息*/
     public ArrayList<Type> getAllTypes();
+
+    /*根据id获取类型*/
+    public Type getTypeById(int typeId);
 }

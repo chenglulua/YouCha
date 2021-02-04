@@ -78,4 +78,15 @@ public class OrderController {
             @RequestParam("low") int low, @RequestParam("high") int high) {
         return this.orderService.getOrderByTPrice(low, high);
     }
+
+    /**
+     * @Description 后台根据评价id获取订单
+     * @Param [assId]
+     * @Return com.youcha.entity.OrderTable
+     */
+    @ResponseBody
+    @RequestMapping("getOrderByAssId")
+    public OrderTable getOrderByAssId(int assId) {
+        return this.orderService.getOrderByAssId(assId);
+    }
 }

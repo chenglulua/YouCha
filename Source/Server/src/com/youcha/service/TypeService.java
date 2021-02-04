@@ -30,4 +30,15 @@ public class TypeService {
         System.out.println(typeList);
         return typeList;
     }
+
+    /**
+     * @Description 后台根据id获取类型
+     * @Param [typeId]
+     * @Return com.youcha.entity.Type
+     */
+    public Type getTypeById(int typeId) {
+        Type type =this.typeMapper.getTypeById(typeId);
+        System.out.println(type);
+        return type;
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 
 /**
  * @ClassName AssessmentService
@@ -37,7 +38,7 @@ public class AssessmentService {
      */
     public int addAss(int drinkId, int star) {
         //1、获取Assessment表中已存在的记录数
-        int sum = this.assMapper.getAllAss();
+        int sum = this.assMapper.getAllAssSum();
         System.out.println("评价总数为：" + sum);
         //2、设置addId = sum + 1
         int assId = sum + 1;
@@ -60,5 +61,38 @@ public class AssessmentService {
         int evStar = this.assMapper.getEvStarByDrinkId(drinkId);
         System.out.println("平均分：" + evStar);
         return evStar;
+    }
+
+    /**
+     * @Description 后台获取所有评论
+     * @Param []
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    public ArrayList<Assessment> getAllAss() {
+        ArrayList<Assessment> assList = this.assMapper.getAllAss();
+        System.out.println(assList);
+        return assList;
+    }
+
+    /**
+     * @Description 后台根据饮品id获取评论
+     * @Param [drinkId]
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    public ArrayList<Assessment> getAssByDrinkId(int drinkId) {
+        ArrayList<Assessment> assList = this.assMapper.getAssByDrinkId(drinkId);
+        System.out.println(assList);
+        return assList;
+    }
+
+    /**
+     * @Description 后台根据星级获取评论
+     * @Param [star]
+     * @Return java.util.ArrayList<com.youcha.entity.Assessment>
+     */
+    public ArrayList<Assessment> getAssByStar(int star) {
+        ArrayList<Assessment> assList = this.assMapper.getAssByStar(star);
+        System.out.println(assList);
+        return assList;
     }
 }
