@@ -37,4 +37,28 @@
     <select id="getOrderByAssId" resultType="com.youcha.entity.OrderTable">
         select * from ordertable where assId = #{assId}
     </select>
+
+    <!--获取已存在的oId的个数-->
+    <select id="getOIdNum" resultType="java.lang.Integer">
+        select count(distinct oId) from ordertable
+    </select>
+
+    <!--获取已存在的orderId的个数-->
+    <select id="getOrderIdNum" resultType="java.lang.Integer">
+        select count(orderId) from ordertable
+    </select>
+
+    <!--获取最新订单的code-->
+    <select id="getCodeByOId" resultType="java.lang.String">
+        select distinct code from ordertable where oId = #{oId}
+    </select>
+
+    <!--新增订单-->
+    <insert id="addOrder" parameterType="com.youcha.entity.OrderTable">
+        insert into
+        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix, oTemp, oExtra, oSize, num, tPrice, code, status)
+        values
+        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix}, #{oTemp}, #{oExtra}, #{oSize},
+        #{num}, #{tPrice}, #{code}, #{status})
+    </insert>
 </mapper>

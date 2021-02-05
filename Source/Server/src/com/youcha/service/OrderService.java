@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * @ClassName OrderService
@@ -108,19 +110,72 @@ public class OrderService {
         int orderId = this.orderMapper.getOrderIdNum();
         System.out.println("已存在订单的orderId个数为：" + orderId);
         //2、获取oId
-        int oId = this.orderMapper.getOIdNum();
-        System.out.println("已存在订单的oId个数为：" + oId);
-        //3、依次存储orders
+        int oId = this.orderMapper.getOIdNum()+1;
+        System.out.println("当前订单的oId为：" + oId);
+        //3、获取取餐码
+        String code = getCode(oId);
+        System.out.println("取餐码为：" + code);
+        //4、依次存储orders
         for (OrderTable order : orders) {
-            //4、设置orderId
+            //5、设置orderId
             orderId += 1;
             order.setOrderId(orderId);
-            //5、设置oId
-            oId += 1;
+            //6、设置oId
             order.setOId(oId);
-            //6、设置取餐码
-            System.out.print(order + "\n");
+            //7、设置code
+            order.setCode(code);
+            System.out.print("order为：" + order + "\n");
+            //8、存储
+            boolean result = this.orderMapper.addOrder(order);
+            System.out.println(result);
         }
-        return false;
+        return true;
+    }
+
+    /**
+     * @Description 设置取餐码
+     * @Param []
+     * @Return java.lang.String
+     * @param oId
+     */
+    public String getCode(int oId){
+        String nCode;
+        //1、获取最新订单的code
+        String oCode = this.orderMapper.getCodeByOId(oId);
+        System.out.println("上一个订单code为：" + oCode);
+        //2、判断上一个订单的日期与今天是否相同
+        //旧日期
+        String oDate = oCode.substring(0, 2);
+        System.out.println("上一个订单的日期为：" + oDate);
+        //当前日期
+        Calendar now = Calendar.getInstance();
+        int date = now.get(Calendar.DAY_OF_MONTH);
+        //日期补齐2位
+        String nDate = makeDigit(2, date);
+        System.out.println("当前日期为: " + nDate);
+        if (oDate.equals(nDate)){
+            //3、code从上一个开始继续编码
+            //上一个code+1
+            int nC = Integer.parseInt(oCode)+1;
+            //取餐码补齐5位
+            nCode = makeDigit(5, nC);
+        } else {
+            //3、code从001开始编码
+            nCode = nDate + "001";
+        }
+        return nCode;
+    }
+
+    /**
+     * @Description 在num前补0，到有i位数的字符串
+     * @Param [i, num]
+     * @Return java.lang.String
+     */
+    public String makeDigit(int i, int num) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        //设置补足为几位
+        formatter.setMinimumIntegerDigits(i);
+        formatter.setGroupingUsed(false);
+        return formatter.format(num);
     }
 }

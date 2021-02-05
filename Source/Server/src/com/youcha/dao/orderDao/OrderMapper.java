@@ -40,4 +40,10 @@ public interface OrderMapper {
 
     /*获取已存在的orderId的个数*/
     public int getOrderIdNum();
+
+    /*获取最新订单的code*/
+    public String getCodeByOId(int oId);
+
+    /*新增订单*/
+    public boolean addOrder(OrderTable order);
 }
