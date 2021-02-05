@@ -37,4 +37,14 @@
     <select id="getOrderByAssId" resultType="com.youcha.entity.OrderTable">
         select * from ordertable where assId = #{assId}
     </select>
+
+    <!--获取已存在的oId的个数-->
+    <select id="getOIdNum" resultType="java.lang.Integer">
+        select count(distinct oId) from ordertable
+    </select>
+
+    <!--获取已存在的orderId的个数-->
+    <select id="getOrderIdNum" resultType="java.lang.Integer">
+        select count(orderId) from ordertable
+    </select>
 </mapper>

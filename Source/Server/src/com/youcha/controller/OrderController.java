@@ -86,7 +86,18 @@ public class OrderController {
      */
     @ResponseBody
     @RequestMapping("getOrderByAssId")
-    public OrderTable getOrderByAssId(int assId) {
+    public OrderTable getOrderByAssId(@RequestParam("assId") int assId) {
         return this.orderService.getOrderByAssId(assId);
+    }
+
+    /**
+     * @Description 前端下单
+     * @Param [orders]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("addOrder")
+    public boolean addOrder(ArrayList<OrderTable> orders) {
+        return this.orderService.addOrder(orders);
     }
 }

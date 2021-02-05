@@ -97,4 +97,30 @@ public class OrderService {
         System.out.println(order);
         return order;
     }
+
+    /**
+     * @Description 前端下单
+     * @Param [orders]
+     * @Return boolean
+     */
+    public boolean addOrder(ArrayList<OrderTable> orders) {
+        //1、获取orderId
+        int orderId = this.orderMapper.getOrderIdNum();
+        System.out.println("已存在订单的orderId个数为：" + orderId);
+        //2、获取oId
+        int oId = this.orderMapper.getOIdNum();
+        System.out.println("已存在订单的oId个数为：" + oId);
+        //3、依次存储orders
+        for (OrderTable order : orders) {
+            //4、设置orderId
+            orderId += 1;
+            order.setOrderId(orderId);
+            //5、设置oId
+            oId += 1;
+            order.setOId(oId);
+            //6、设置取餐码
+            System.out.print(order + "\n");
+        }
+        return false;
+    }
 }

@@ -34,4 +34,10 @@ public interface OrderMapper {
 
     /*根据评价id获取订单*/
     public OrderTable getOrderByAssId(int assId);
+
+    /*获取已存在的oId的个数*/
+    public int getOIdNum();
+
+    /*获取已存在的orderId的个数*/
+    public int getOrderIdNum();
 }
