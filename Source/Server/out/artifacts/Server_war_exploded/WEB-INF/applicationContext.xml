@@ -10,13 +10,8 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:annotation-config/>
-
     <!--配置组件包扫描的位置-->
-    <context:component-scan base-package="com.youcha">
-        <context:exclude-filter expression="org.springframework.stereotype.Controller"
-                                type="annotation"/>
-    </context:component-scan>
+    <context:component-scan base-package="com.youcha"/>
 
     <!-- 读取db.properties配置文件到Spring容器中 -->
     <context:property-placeholder location="web/WEB-INF/db.properties"/>
@@ -60,9 +55,6 @@
     </bean>
     <!--支持注解驱动的事务管理，指定事务管理器 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <!--容器自动扫描IOC组件  -->
-    <context:component-scan base-package="com.youcha"/>
 
     <!--aspectj支持自动代理实现AOP功能 -->
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->

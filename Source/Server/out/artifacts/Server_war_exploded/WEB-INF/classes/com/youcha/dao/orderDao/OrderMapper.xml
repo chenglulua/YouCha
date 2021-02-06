@@ -4,10 +4,61 @@
 
     <!--根据用户id和状态查找Order信息-->
     <select id="getOrderByUserIdAndStatus" resultType="com.youcha.entity.OrderTable">
-        <!--select drink.dName, drink.img, orderTable.oBrix, orderTable.time, orderTable.oTemp, orderTable.oExtra,
-        orderTable.oSize, orderTable.num, orderTable.tPrice from orderTable, drink
-        where ordertable.userId = #{userId}, ordertable.status = #{status} and ordertable.drinkId = drink.drinkId-->
        select * from orderTable
        where ordertable.userId = #{userId} and ordertable.status = #{status}
    </select>
+
+    <!--更新评价assId-->
+    <update id="updateOrderAss">
+        update ordertable set assId = #{assId} where orderId = #{orderId}
+    </update>
+
+    <!--根据状态查找订单信息-->
+    <select id="getOrderByStatus" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where status = #{status}
+    </select>
+
+    <!--更改订单状态-->
+    <update id="updateOrderStatusByOId">
+        update ordertable set status = 1 where oId = #{oId}
+    </update>
+
+    <!--根据oId查找订单信息-->
+    <select id="getOrderByOId" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where oId = #{oId}
+    </select>
+
+    <!--根据总价格区间查找订单信息-->
+    <select id="getOrderByTPrice" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where tPrice between #{low} and #{high}
+    </select>
+
+    <!--根据评价id获取订单-->
+    <select id="getOrderByAssId" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where assId = #{assId}
+    </select>
+
+    <!--获取已存在的oId的个数-->
+    <select id="getOIdNum" resultType="java.lang.Integer">
+        select count(distinct oId) from ordertable
+    </select>
+
+    <!--获取已存在的orderId的个数-->
+    <select id="getOrderIdNum" resultType="java.lang.Integer">
+        select count(orderId) from ordertable
+    </select>
+
+    <!--获取最新订单的code-->
+    <select id="getCodeByOId" resultType="java.lang.String">
+        select distinct code from ordertable where oId = #{oId}
+    </select>
+
+    <!--新增订单-->
+    <insert id="addOrder" parameterType="com.youcha.entity.OrderTable">
+        insert into
+        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix, oTemp, oExtra, oSize, num, tPrice, code, status)
+        values
+        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix}, #{oTemp}, #{oExtra}, #{oSize},
+        #{num}, #{tPrice}, #{code}, #{status})
+    </insert>
 </mapper>
