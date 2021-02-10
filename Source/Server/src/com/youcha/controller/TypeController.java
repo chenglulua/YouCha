@@ -4,6 +4,7 @@ import com.youcha.entity.Type;
 import com.youcha.service.TypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +29,7 @@ public class TypeController {
      * @Return java.util.ArrayList<com.youcha.entity.Type>
      */
     @ResponseBody
-    @RequestMapping("getAllType")
+    @RequestMapping(value = "getAllType", method = RequestMethod.GET)
     public ArrayList<Type> getAllType(){
         return this.typeService.getAllTypes();
     }

@@ -41,37 +41,6 @@ public class MyBatisTest {
 		ArrayList<Type> types = typeController.getAllType();
 		System.out.println(types);
 
-//		OrderTable o1 = new OrderTable();
-//		o1.setUserId("12846059");
-//		o1.setTime("time");
-//		o1.setDrinkId(2);
-//		o1.setOBrix("half");
-//		o1.setOTemp("hot");
-//		o1.setOSize("middle");
-//		o1.setNum(1);
-//		o1.setTPrice(12);
-//		o1.setStatus(false);
-
-//		OrderTable o2 = new OrderTable();
-//		o2.setUserId("12846059");
-//		o2.setTime("time");
-//		o2.setDrinkId(8);
-//		o2.setOBrix("total");
-//		o2.setOTemp("normal");
-//		o2.setOSize("large");
-//		o2.setNum(1);
-//		o2.setTPrice(24);
-//		o2.setStatus(false);
-
-//		ArrayList<OrderTable> os = new ArrayList<>();
-//		os.add(o1);
-//		os.add(o2);
-//		System.out.println(os);
-
-//		boolean result = this.orderController.addOrder(os);
-//		System.out.println(result);
-
-
 //		ApplicationContext ac = new ClassPathXmlApplicationContext(
 //				"/web/WEB-INF/applicationContext.xml");
 //		TypeMapper typeMapper = (TypeMapper) ac.getBean("typeMapper");

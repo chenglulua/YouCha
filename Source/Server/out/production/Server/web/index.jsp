@@ -1,17 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lenovo
-  Date: 2020/12/14
-  Time: 15:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-    测试成功了么?成功了
-    <img src="drinkImg/10.jpg">
-  </body>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>所有类型</h3>
+	<img src="/drinkImg/1.jpg">
+</body>
 </html>
