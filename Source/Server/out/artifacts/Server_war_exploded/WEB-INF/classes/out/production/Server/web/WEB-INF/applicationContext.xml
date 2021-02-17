@@ -2,27 +2,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    
     <!--配置组件包扫描的位置-->
     <context:component-scan base-package="com.youcha"/>
 
     <!-- 读取db.properties配置文件到Spring容器中 -->
-    <context:property-placeholder location="/WEB-INF/db.properties"/>
+    <context:property-placeholder location="web/WEB-INF/db.properties"/>
 
     <!-- 创建SqlSessionFactory MyBatis会话工厂对象 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/youcha?characterEncoding=utf-8,serverTimezone=UTC,useSSL=false" />
+        <property name="username" value="root" />
+        <property name="password" value="123456" />
     </bean>
 
     <!-- 配置数据源-->
@@ -30,7 +32,7 @@
         <!-- 注入数据源 -->
         <property name="dataSource" ref="dataSource" />
         <!-- 配置mybatis.xml主配置文件（注配置文件可以保留一些个性化配置，缓存，日志，插件） -->
-        <property name="configLocation" value="/WEB-INF/mybatis.xml" />
+        <property name="configLocation" value="WEB-INF/mybatis.xml" />
         <!-- 读取映射文件，MyBatis的纯注解不用配置 -->
         <property name="mapperLocations">
             <array>

@@ -9,5 +9,6 @@
 <body>
 	<h3>所有类型</h3>
 	<img src="/drinkImg/1.jpg">
+    <img src="../../drink/2.jpg">
 </body>
 </html>

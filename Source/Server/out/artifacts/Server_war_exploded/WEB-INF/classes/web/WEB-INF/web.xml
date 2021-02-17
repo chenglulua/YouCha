@@ -8,7 +8,8 @@
     <!--spring的上下文-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>web/WEB-INF/applicationContext.xml</param-value>
+        <param-value>config/applicationContext1.xml</param-value>
+        <!--<param-value>web/WEB-INF/applicationContext.xml</param-value>-->
     </context-param>
 
     <!--spring的核心监听器-->
@@ -21,7 +22,8 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/web/WEB-INF/applicationContext.xml</param-value>
+            <param-value>classpath:config/applicationContext1.xml</param-value>
+            <!--<param-value>classpath:/web/WEB-INF/applicationContext.xml</param-value>-->
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

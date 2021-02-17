@@ -2,6 +2,7 @@ package com.youcha.service;
 
 import com.youcha.dao.userDao.UserMapper;
 import com.youcha.entity.User;
+import com.youcha.util.Md5Encode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,9 @@ public class UserService {
      * @Return com.youcha.entity.User
      */
     public User login(String phone, String password) {
-        User user = this.userMapper.getUserByPhoneAndPassword(phone, password);
+        //将password转化为md5
+        User user = this.userMapper.getUserByPhoneAndPassword(
+                phone, getMd5Encode(password));
         System.out.println(user);
         return user;
     }
@@ -68,7 +71,8 @@ public class UserService {
             user.setUserId(userId);
             user.setUName("用户" + userId);
             user.setPhone(phone);
-            user.setPassword(password);
+            //5、对password进行md5加密
+            user.setPassword(getMd5Encode(password));
             boolean result = this.userMapper.insertUser(user);
             System.out.println(result);
             return result;
@@ -116,5 +120,14 @@ public class UserService {
         //将字符串转换为数字并输出
         System.out.println("新增用户id为：" + str.toString());
         return str.toString();
+    }
+
+    /**
+     * @Description 对password进行Md5加密
+     * @Param [password]
+     * @Return java.lang.String
+     */
+    private String getMd5Encode(String password) {
+        return Md5Encode.getMD5(password.getBytes());
     }
 }
