@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youcha.dao.sCartDao.SCartMapper">
+
+    <!--根据userId获取购物车-->
+    <select id="getSCartByUserId" resultType="com.youcha.entity.ShoppingCart">
+        select * from shoppingcart where userId = #{userId}
+    </select>
+
+    <!--获取购物车总数-->
+    <select id="getAllSCartSum" resultType="java.lang.Integer">
+        select count(sId) from shoppingcart
+    </select>
+
+    <!--新增购物车-->
+    <insert id="addSCartByUserId">
+        insert into
+            shoppingcart(sId, userId, drinkId, sBrix, sTemp, sExtra, sSize, num)
+            value (#{sId}, #{userId}, #{drinkId},
+            #{sBrix}, #{sTemp}, #{sExtra}, #{sSize}, #{num})
+    </insert>
+</mapper>

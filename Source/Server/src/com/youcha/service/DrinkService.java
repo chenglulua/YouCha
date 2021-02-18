@@ -28,7 +28,7 @@ public class DrinkService {
      */
     public ArrayList<Drink> randomDrinks(int num) {
         //1.求出饮品数量
-        int sum = this.drinkMapper.getDrinkNum();
+        int sum = drinkMapper.getDrinkNum();
         System.out.println("数据库内饮品数量为：" + sum);
         //2.生成num个不重复的随机数，随机范围为[0-sum)
         int[] randomList = getRandom(sum, num);
@@ -41,7 +41,7 @@ public class DrinkService {
         //4.获取num个饮品信息
         ArrayList<Drink> drinkList = new ArrayList<>(num);
         for (int i = 0; i < num; i++){
-            Drink drink = this.drinkMapper.getDrinkById(randomList[i]);
+            Drink drink = drinkMapper.getDrinkById(randomList[i]);
             drinkList.add(drink);
         }
         System.out.println(drinkList);
@@ -54,7 +54,7 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getDrinkByPrice(int low, int high) {
-        ArrayList<Drink> drinkList = this.drinkMapper.getDrinkByPrice(low, high);
+        ArrayList<Drink> drinkList = drinkMapper.getDrinkByPrice(low, high);
         System.out.println(drinkList);
         return drinkList;
     }
@@ -65,7 +65,7 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getDrinksByName(String str) {
-        ArrayList<Drink> drinkList = this.drinkMapper.getDrinkByName(str);
+        ArrayList<Drink> drinkList = drinkMapper.getDrinkByName(str);
         System.out.println(drinkList);
         return drinkList;
     }
@@ -76,7 +76,7 @@ public class DrinkService {
      * @Return boolean
      */
     public boolean updateDrink(Drink newDrink) {
-        int result = this.drinkMapper.updateDrink(newDrink);
+        int result = drinkMapper.updateDrink(newDrink);
         if (result == 1){
             System.out.println("更新成功");
             return true;
@@ -92,7 +92,7 @@ public class DrinkService {
      * @Return com.youcha.entity.Drink
      */
     public Drink getDrink(int drinkId) {
-        Drink drink = this.drinkMapper.getDrinkById(drinkId);
+        Drink drink = drinkMapper.getDrinkById(drinkId);
         System.out.println(drink);
         return drink;
     }
@@ -103,7 +103,7 @@ public class DrinkService {
      * @Return java.util.ArrayList<com.youcha.entity.Drink>
      */
     public ArrayList<Drink> getAllDrinks() {
-        ArrayList<Drink> drinkList = this.drinkMapper.getAllDrinks();
+        ArrayList<Drink> drinkList = drinkMapper.getAllDrinks();
         System.out.println(drinkList);
         return drinkList;
     }
@@ -115,14 +115,14 @@ public class DrinkService {
      */
     public boolean addDrink(Drink newDrink) {
         //1、判断drinkId是否存在
-        Drink drink1 = this.drinkMapper.getDrinkById(newDrink.getDrinkId());
+        Drink drink1 = drinkMapper.getDrinkById(newDrink.getDrinkId());
         if (drink1 != null){
             //2、若存在，返回“已存在，重新输入”
             System.out.println("饮品已存在，请重新输入");
             return false;
         } else {
             //2、若不存在，插入，返回“插入成功”
-            int result = this.drinkMapper.insertDrink(newDrink);
+            int result = drinkMapper.insertDrink(newDrink);
             System.out.println("新增饮品成功：" + result);
             return true;
         }

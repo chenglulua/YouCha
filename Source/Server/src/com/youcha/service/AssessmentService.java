@@ -26,7 +26,7 @@ public class AssessmentService {
      * @Return com.youcha.entity.Assessment
      */
     public Assessment getAssById(int assId) {
-        Assessment ass = this.assMapper.getAssById(assId);
+        Assessment ass = assMapper.getAssById(assId);
         System.out.println(ass);
         return ass;
     }
@@ -38,7 +38,7 @@ public class AssessmentService {
      */
     public int addAss(int drinkId, int star) {
         //1、获取Assessment表中已存在的记录数
-        int sum = this.assMapper.getAllAssSum();
+        int sum = assMapper.getAllAssSum();
         System.out.println("评价总数为：" + sum);
         //2、设置addId = sum + 1
         int assId = sum + 1;
@@ -47,7 +47,7 @@ public class AssessmentService {
         ass.setAssId(assId);
         ass.setDrinkId(drinkId);
         ass.setStar(star);
-        boolean result = this.assMapper.addAss(ass);
+        boolean result = assMapper.addAss(ass);
         System.out.println("新增评价的结果为：" + result);
         return assId;
     }
@@ -58,7 +58,7 @@ public class AssessmentService {
      * @Return int
      */
     public int getEvStarByDrinkId(int drinkId) {
-        int evStar = this.assMapper.getEvStarByDrinkId(drinkId);
+        int evStar = assMapper.getEvStarByDrinkId(drinkId);
         System.out.println("平均分：" + evStar);
         return evStar;
     }
@@ -69,7 +69,7 @@ public class AssessmentService {
      * @Return java.util.ArrayList<com.youcha.entity.Assessment>
      */
     public ArrayList<Assessment> getAllAss() {
-        ArrayList<Assessment> assList = this.assMapper.getAllAss();
+        ArrayList<Assessment> assList = assMapper.getAllAss();
         System.out.println(assList);
         return assList;
     }
@@ -80,7 +80,7 @@ public class AssessmentService {
      * @Return java.util.ArrayList<com.youcha.entity.Assessment>
      */
     public ArrayList<Assessment> getAssByDrinkId(int drinkId) {
-        ArrayList<Assessment> assList = this.assMapper.getAssByDrinkId(drinkId);
+        ArrayList<Assessment> assList = assMapper.getAssByDrinkId(drinkId);
         System.out.println(assList);
         return assList;
     }
@@ -91,7 +91,7 @@ public class AssessmentService {
      * @Return java.util.ArrayList<com.youcha.entity.Assessment>
      */
     public ArrayList<Assessment> getAssByStar(int star) {
-        ArrayList<Assessment> assList = this.assMapper.getAssByStar(star);
+        ArrayList<Assessment> assList = assMapper.getAssByStar(star);
         System.out.println(assList);
         return assList;
     }

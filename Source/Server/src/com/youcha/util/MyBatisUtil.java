@@ -1,11 +1,12 @@
 package com.youcha.util;
 
-import java.io.IOException;
-import java.io.InputStream;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @ClassName MyBatisUtil
@@ -19,7 +20,7 @@ public class MyBatisUtil {
 	static {
 		InputStream is;
 		try {
-			is = Resources.getResourceAsStream("web/mybatis.xml");
+			is = Resources.getResourceAsStream("config/mybatis1.xml");
 			sessionFactory = new SqlSessionFactoryBuilder().build(is);
 		} catch (IOException e) {
             e.printStackTrace();

@@ -26,7 +26,7 @@ public class TypeService {
      * @Return java.util.ArrayList<com.youcha.entity.Type>
      */
     public ArrayList<Type> getAllTypes() {
-        ArrayList<Type> typeList = this.typeMapper.getAllTypes();
+        ArrayList<Type> typeList = typeMapper.getAllTypes();
         System.out.println(typeList);
         return typeList;
     }
@@ -37,7 +37,7 @@ public class TypeService {
      * @Return com.youcha.entity.Type
      */
     public Type getTypeById(int typeId) {
-        Type type =this.typeMapper.getTypeById(typeId);
+        Type type = typeMapper.getTypeById(typeId);
         System.out.println(type);
         return type;
     }

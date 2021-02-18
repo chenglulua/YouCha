@@ -28,6 +28,8 @@ public class MyBatisTest {
 	private TypeController typeController;
 	@Resource
 	private UserController userController;
+	@Resource
+	private SCartController sCartController;
 
 	@Test
 	public void main() {

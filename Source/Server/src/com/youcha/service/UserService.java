@@ -28,7 +28,7 @@ public class UserService {
      * @Return java.util.ArrayList<com.youcha.entity.User>
      */
     public List<User> getAllUsers() {
-        List<User> userList = this.userMapper.getAllUsers();
+        List<User> userList = userMapper.getAllUsers();
         System.out.println(userList);
 		return userList;
     }
@@ -40,7 +40,7 @@ public class UserService {
      */
     public User login(String phone, String password) {
         //将password转化为md5
-        User user = this.userMapper.getUserByPhoneAndPassword(
+        User user = userMapper.getUserByPhoneAndPassword(
                 phone, getMd5Encode(password));
         System.out.println(user);
         return user;
@@ -53,18 +53,18 @@ public class UserService {
      */
     public boolean register(String phone, String password) {
         //1、判断手机号是否注册过
-        User user1 = this.userMapper.getUserByPhone(phone);
+        User user1 = userMapper.getUserByPhone(phone);
         System.out.println("手机号是否注册过：" + user1);
         if (user1 == null){
             //2、没有注册过->分配存储
             //随机生成8位用户ID
             String userId;
-            User user2 = new User();
+            User user2;
             //3、判断分配的id是否已存在
             do {
                 //4、存在->重新分配
                 userId = getRandomUserId(8);
-                user2 = this.userMapper.getUserByUserId(userId);
+                user2 = userMapper.getUserByUserId(userId);
             } while (user2 != null);
             //4、不存在->存储user
             User user = new User();
@@ -73,7 +73,7 @@ public class UserService {
             user.setPhone(phone);
             //5、对password进行md5加密
             user.setPassword(getMd5Encode(password));
-            boolean result = this.userMapper.insertUser(user);
+            boolean result = userMapper.insertUser(user);
             System.out.println(result);
             return result;
         } else {
@@ -88,7 +88,7 @@ public class UserService {
      * @Return com.youcha.entity.User
      */
     public User getUserByUserId(String userId) {
-        User user = this.userMapper.getUserByUserId(userId);
+        User user = userMapper.getUserByUserId(userId);
         System.out.println(user);
         return user;
     }
@@ -99,7 +99,7 @@ public class UserService {
      * @Return boolean
      */
     public boolean updateUNameByUserId(String uName, String userId) {
-        boolean result = this.userMapper.updateUNameByUserId(uName, userId);
+        boolean result = userMapper.updateUNameByUserId(uName, userId);
         System.out.println(result);
         return result;
     }

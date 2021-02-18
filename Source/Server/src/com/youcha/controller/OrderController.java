@@ -29,8 +29,8 @@ public class OrderController {
      */
     @ResponseBody
     @RequestMapping("getOrderByUserIdAndStatus")
-    public ArrayList<OrderTable> getOrderByUserIdAndStatus(
-            @RequestParam("userId") int userId, @RequestParam("status") int status){
+    public ArrayList<ArrayList> getOrderByUserIdAndStatus(
+            @RequestParam("userId") String userId, @RequestParam("status") int status){
         return this.orderService.getOrderByUserIdAndStatus(userId, status);
     }
 

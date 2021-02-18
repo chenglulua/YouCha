@@ -13,30 +13,30 @@ import java.util.ArrayList;
 public interface DrinkMapper {
 
     /*获取饮品总数*/
-    public int getDrinkNum();
+    int getDrinkNum();
 
     /*根据饮品id获取饮品*/
-    public Drink getDrinkById(int drinkId);
+    Drink getDrinkById(int drinkId);
 
     /*获取所有饮品信息*/
-    public ArrayList<Drink> getAllDrinks();
+    ArrayList<Drink> getAllDrinks();
 
     /*新增饮品*/
-    public int insertDrink(Drink drink);
+    int insertDrink(Drink drink);
 
     /*更新饮品*/
-    public int updateDrink(Drink drink);
+    int updateDrink(Drink drink);
 
     /*根据名称模糊查询*/
-    public ArrayList<Drink> getDrinkByName(String str);
+    ArrayList<Drink> getDrinkByName(String str);
 
     /*根据价格区间查找饮品*/
-    public ArrayList<Drink> getDrinkByPrice(@Param("low") int low, @Param("high") int high);
+    ArrayList<Drink> getDrinkByPrice(@Param("low") int low, @Param("high") int high);
 
     /*更改drink表中的evStar*/
-    public boolean updateDrinkEvStar(
+    boolean updateDrinkEvStar(
             @Param("drinkId") int drinkId, @Param("evStar") int evStar);
 
     /*删除饮品*/
-    public boolean deleteDrinkById(int drinkId);
+    boolean deleteDrinkById(int drinkId);
 }

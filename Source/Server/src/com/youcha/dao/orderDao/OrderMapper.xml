@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youcha.dao.orderDao.OrderMapper">
 
     <!--根据用户id和状态查找Order信息-->
@@ -56,9 +57,10 @@
     <!--新增订单-->
     <insert id="addOrder" parameterType="com.youcha.entity.OrderTable">
         insert into
-        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix, oTemp, oExtra, oSize, num, tPrice, code, status)
+        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix,
+                   oTemp, oExtra, oSize, num, tPrice, code, status)
         values
-        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix}, #{oTemp}, #{oExtra}, #{oSize},
-        #{num}, #{tPrice}, #{code}, #{status})
+        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix},
+         #{oTemp}, #{oExtra}, #{oSize}, #{num}, #{tPrice}, #{code}, #{status})
     </insert>
 </mapper>

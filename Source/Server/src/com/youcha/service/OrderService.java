@@ -22,17 +22,45 @@ public class OrderService {
     @Resource
     private OrderMapper orderMapper;
 
-    /*  订单更改为数组嵌套    */
     /**
      * @Description 前端根据userId获取用户订单
      * @Param [userId, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
-    public ArrayList<OrderTable> getOrderByUserIdAndStatus(int userId, int status) {
+    public ArrayList<ArrayList> getOrderByUserIdAndStatus(String userId, int status) {
         ArrayList<OrderTable> orderList =
-                this.orderMapper.getOrderByUserIdAndStatus(userId, status);
-        System.out.println(orderList);
-        return orderList;
+                orderMapper.getOrderByUserIdAndStatus(userId, status);
+        System.out.println("原订单数组：" + orderList);
+        //新数组
+        ArrayList<ArrayList> newOrderList = new ArrayList<>();
+        //内部嵌套数组
+        ArrayList<OrderTable> singleOrder = new ArrayList<>();
+        //flag标志位，记录oId，判断是否为同一订单
+        int flag = 0;
+        //将订单数组根据oId嵌套成为新的订单数组
+        for (OrderTable order : orderList) {
+            if (flag == order.getOId()){
+                //当前和上一个为同一订单 -> 放到singleOrder
+                singleOrder.add(order);
+            } else {
+                //当前和上一个不为同一订单
+                //如果singleOrder不为空，先存到newOrderList
+                if (!singleOrder.isEmpty()){
+                    System.out.println("oId为" + flag + "的订单数组：" + singleOrder);
+                    newOrderList.add(singleOrder);
+                    //重置singleOrder
+                    singleOrder = new ArrayList<>();
+                }
+                //否则，放到singleOrder
+                singleOrder.add(order);
+                //重新设置flag
+                flag = order.getOId();
+            }
+        }
+        //将最后一个数组插入newOrderList
+        newOrderList.add(singleOrder);
+        System.out.println("嵌套订单数组：" + newOrderList);
+        return newOrderList;
     }
 
     /**
@@ -41,7 +69,7 @@ public class OrderService {
      * @Return boolean
      */
     public boolean updateOrderAssByOrderId(int orderId, int assId) {
-        boolean result = this.orderMapper.updateOrderAss(orderId, assId);
+        boolean result = orderMapper.updateOrderAss(orderId, assId);
         System.out.println("插入assId的结果为：" + result);
         return result;
     }
@@ -52,7 +80,7 @@ public class OrderService {
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     public ArrayList<OrderTable> getOrderByStatus(int status) {
-        ArrayList<OrderTable> orders = this.orderMapper.getOrderByStatus(status);
+        ArrayList<OrderTable> orders = orderMapper.getOrderByStatus(status);
         System.out.println(orders);
         return orders;
     }
@@ -63,7 +91,7 @@ public class OrderService {
      * @Return boolean
      */
     public boolean updateOrderStatusByOId(int oId) {
-        boolean result = this.orderMapper.updateOrderStatusByOId(oId);
+        boolean result = orderMapper.updateOrderStatusByOId(oId);
         System.out.println(result);
         return result;
     }
@@ -74,7 +102,7 @@ public class OrderService {
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     public ArrayList<OrderTable> getOrderByOId(int oId) {
-        ArrayList<OrderTable> orders = this.orderMapper.getOrderByOId(oId);
+        ArrayList<OrderTable> orders = orderMapper.getOrderByOId(oId);
         System.out.println(orders);
         return orders;
     }
@@ -85,7 +113,7 @@ public class OrderService {
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     public ArrayList<OrderTable> getOrderByTPrice(int low, int high) {
-        ArrayList<OrderTable> orders = this.orderMapper.getOrderByTPrice(low, high);
+        ArrayList<OrderTable> orders = orderMapper.getOrderByTPrice(low, high);
         System.out.println(orders);
         return orders;
     }
@@ -96,7 +124,7 @@ public class OrderService {
      * @Return com.youcha.entity.OrderTable
      */
     public OrderTable getOrderByAssId(int assId) {
-        OrderTable order = this.orderMapper.getOrderByAssId(assId);
+        OrderTable order = orderMapper.getOrderByAssId(assId);
         System.out.println(order);
         return order;
     }
@@ -108,10 +136,10 @@ public class OrderService {
      */
     public boolean addOrder(ArrayList<OrderTable> orders) {
         //1、获取orderId
-        int orderId = this.orderMapper.getOrderIdNum();
+        int orderId = orderMapper.getOrderIdNum();
         System.out.println("已存在订单的orderId个数为：" + orderId);
         //2、获取oId
-        int oId = this.orderMapper.getOIdNum()+1;
+        int oId = orderMapper.getOIdNum()+1;
         System.out.println("当前订单的oId为：" + oId);
         //3、获取取餐码
         String code = getCode(oId);
@@ -127,7 +155,7 @@ public class OrderService {
             order.setCode(code);
             System.out.print("order为：" + order + "\n");
             //8、存储
-            boolean result = this.orderMapper.addOrder(order);
+            boolean result = orderMapper.addOrder(order);
             System.out.println(result);
         }
         return true;
@@ -135,14 +163,13 @@ public class OrderService {
 
     /**
      * @Description 设置取餐码
-     * @Param []
+     * @Param [oId]
      * @Return java.lang.String
-     * @param oId
      */
     public String getCode(int oId){
         String nCode;
         //1、获取最新订单的code
-        String oCode = this.orderMapper.getCodeByOId(oId);
+        String oCode = orderMapper.getCodeByOId(oId);
         System.out.println("上一个订单code为：" + oCode);
         //2、判断上一个订单的日期与今天是否相同
         //旧日期
