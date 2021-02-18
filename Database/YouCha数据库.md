@@ -1,6 +1,6 @@
 # YouCha数据库
 
-### **用户表 User：**
+### **用户表 user：**
 
 userId：用户号；主键；字符串类型；8位随机数字；
 
@@ -10,7 +10,7 @@ phone：用户电话；字符串类型；
 
 password：密码；字符串类型；6-10位字母和数字组合；使用MD5加密；
 
-### **饮品表Drink：**
+### **饮品表drink：**
 
 drinkId：饮品号；主键；整型
 
@@ -34,7 +34,7 @@ size：规格；布尔类型；不可选0，可选1；中杯middle，大杯large
 
 evStar：平均星级；外键；整型；1-5级
 
-### **订单表OrderTable：一种饮品对应一条数据（订单记录号），一个订单（订单号）有多条数据**
+### **订单表ordertable：一种饮品对应一条数据（订单记录号），一个订单（订单号）有多条数据**
 
 orderId：订单记录号；主键；整型
 
@@ -64,7 +64,7 @@ code：取餐码；字符串类型；日期序号04008
 
 status：订单状态；布尔类型；制作中0，已完成1
 
-### **评价表Assessment：**
+### **评价表assessment：**
 
 assId：评价号；主键；整型
 
@@ -72,8 +72,26 @@ drinkId：饮品号；外键；整型
 
 star：星级；整型；1-5级
 
-### **类型表Type：**
+### **类型表type：**
 
 typeId；类型号；主键；整型
 
 tName：类型名称；字符串类型
+
+### 购物车表shoppingcart：
+
+sId：购物车号；主键；整型
+
+userId：用户号；外键；字符串类型
+
+drinkId：饮品号；外键；整型
+
+sBrix：糖度；字符串类型；无糖none、五分糖half、全糖total
+
+sTemp：温度；字符串类型；冰ice、常温normal、热hot
+
+sExtra：小料；字符串类型；珍珠pearl、芋圆taro、红豆ormosia、椰果coconut、布丁pudding
+
+sSize：规格；字符串类型；中杯middle，大杯large 
+
+num：数量；整型

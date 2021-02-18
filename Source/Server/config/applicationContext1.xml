@@ -17,7 +17,7 @@
     <context:component-scan base-package="com.youcha"/>
 
     <!-- 读取db.properties配置文件到Spring容器中 -->
-    <context:property-placeholder location="db1.properties"/>
+    <context:property-placeholder location="classpath:db1.properties"/>
 
     <!-- 创建SqlSessionFactory MyBatis会话工厂对象 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -36,7 +36,7 @@
         <!-- 注入数据源 -->
         <property name="dataSource" ref="dataSource" />
         <!-- 配置mybatis.xml主配置文件（注配置文件可以保留一些个性化配置，缓存，日志，插件） -->
-        <property name="configLocation" value="mybatis1.xml" />
+        <property name="configLocation" value="classpath:mybatis1.xml" />
         <!-- 读取映射文件，MyBatis的纯注解不用配置 -->
         <property name="mapperLocations">
             <array>
