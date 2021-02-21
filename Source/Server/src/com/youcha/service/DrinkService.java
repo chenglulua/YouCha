@@ -114,18 +114,13 @@ public class DrinkService {
      * @Return boolean
      */
     public boolean addDrink(Drink newDrink) {
-        //1、判断drinkId是否存在
-        Drink drink1 = drinkMapper.getDrinkById(newDrink.getDrinkId());
-        if (drink1 != null){
-            //2、若存在，返回“已存在，重新输入”
-            System.out.println("饮品已存在，请重新输入");
-            return false;
-        } else {
-            //2、若不存在，插入，返回“插入成功”
-            int result = drinkMapper.insertDrink(newDrink);
-            System.out.println("新增饮品成功：" + result);
-            return true;
-        }
+        //1、设置drinkId = num + 1
+        int drinkId = drinkMapper.getDrinkNum();
+        newDrink.setDrinkId(drinkId);
+        //2、新增音频
+        int result = drinkMapper.insertDrink(newDrink);
+        System.out.println("新增饮品结果：" + result);
+        return true;
     }
 
     /**

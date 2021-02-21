@@ -57,9 +57,10 @@
     <!--新增订单-->
     <insert id="addOrder" parameterType="com.youcha.entity.OrderTable">
         insert into
-        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix, oTemp, oExtra, oSize, num, tPrice, code, status)
+        ordertable(orderId, oId, userId, time, drinkId, assId, oBrix,
+                   oTemp, oExtra, oSize, num, tPrice, code, status)
         values
-        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix}, #{oTemp}, #{oExtra}, #{oSize},
-        #{num}, #{tPrice}, #{code}, #{status})
+        (#{orderId}, #{oId}, #{userId}, #{time}, #{drinkId}, #{assId}, #{oBrix},
+         #{oTemp}, #{oExtra}, #{oSize}, #{num}, #{tPrice}, #{code}, #{status})
     </insert>
 </mapper>

@@ -88,6 +88,15 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--图片上传-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置上传文件的最大尺寸为10MB-->
+        <property name="maxUploadSize" value="104857600" />
+        <property name="maxInMemorySize" value="4096" />
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
     <!-- 消息转换器，添加对文字编码的全局处理，解决中文返回问号的毛病 -->
     <!--<bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
