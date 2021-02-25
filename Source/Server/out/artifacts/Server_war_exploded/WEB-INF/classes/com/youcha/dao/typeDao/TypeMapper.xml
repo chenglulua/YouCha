@@ -12,4 +12,14 @@
     <select id="getTypeById" resultType="com.youcha.entity.Type">
         select * from type where typeId = #{typeId}
     </select>
+
+    <!--获取类型总数-->
+    <select id="getTypeNum" resultType="java.lang.Integer">
+        select count(typeId) from type
+    </select>
+
+    <!--新增类型-->
+    <insert id="addType" >
+        insert into type(typeId, tName) value (#{typeId}, #{tName})
+    </insert>
 </mapper>

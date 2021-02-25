@@ -45,4 +45,26 @@ public class SCartController {
                                     @RequestParam("userId") String userId) {
         return this.sCartService.addSCartByUserId(sCart, userId);
     }
+
+    /**
+     * @Description 前端购物车按钮操作
+     * @Param [sId, operator]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("sCartButton")
+    public boolean sCartButton(int sId, String op) {
+        return this.sCartService.sCartButton(sId, op);
+    }
+
+    /**
+     * @Description 前端购物车批量删除
+     * @Param [sIds]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("deleteSCartBySId")
+    public boolean deleteSCartBySId(ArrayList sIds) {
+        return this.sCartService.deleteSCartBySId(sIds);
+    }
 }

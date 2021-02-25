@@ -48,4 +48,29 @@ public class SCartService {
         System.out.println("新增购物车的结果为：" + result);
         return result;
     }
+
+    /**
+     * @Description 前端购物车按钮操作
+     * @Param [sId, operator]
+     * @Return boolean
+     */
+    public boolean sCartButton(int sId, String op) {
+        if (op.equals("plus")){
+            return sCartMapper.plusSCartBySId(sId);
+        } else if (op.equals("reduce")){
+            return sCartMapper.reduceSCartBySId(sId);
+        }
+        return false;
+    }
+
+    /**
+     * @Description 前端购物车批量删除
+     * @Param [sIds]
+     * @Return boolean
+     */
+    public boolean deleteSCartBySId(ArrayList sIds) {
+        boolean result = sCartMapper.deleteSCartBySId(sIds);
+        System.out.println("购物车批量删除的结果为：" + result);
+        return result;
+    }
 }

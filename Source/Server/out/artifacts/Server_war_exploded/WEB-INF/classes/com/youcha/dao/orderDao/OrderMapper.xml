@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youcha.dao.orderDao.OrderMapper">
-
+    
     <!--根据用户id和状态查找Order信息-->
-    <select id="getOrderByUserIdAndStatus" resultType="com.youcha.entity.OrderTable">
-       select * from orderTable
-       where ordertable.userId = #{userId} and ordertable.status = #{status}
-   </select>
+    <select id="getOrderByUserIdAndStatus"
+            resultType="com.youcha.entity.OrderTable" resultMap="orderWithDName">
+    <!--select o.orderId, o.oId, o.userId, o.time, o.drinkId, o.assId, o.oBrix, o.oTemp,
+           o.oExtra, o.Size, o.num, o.tPrice, o.code, o.status, d.dName
+    from orderTable o, drink d
+    where o.userId = #{userId}, o.status = #{status} and o.drinkId = d.drinkId-->
+    select o.*, d.dName from orderTable o, drink d
+    WHERE o.drinkId = d.drinkId
+</select>
 
-    <!--更新评价assId-->
+ <!--更新评价assId-->
     <update id="updateOrderAss">
         update ordertable set assId = #{assId} where orderId = #{orderId}
     </update>
@@ -24,14 +29,15 @@
         update ordertable set status = 1 where oId = #{oId}
     </update>
 
-    <!--根据oId查找订单信息-->
-    <select id="getOrderByOId" resultType="com.youcha.entity.OrderTable">
-        select * from ordertable where oId = #{oId}
+    <!--根据oId和status查找订单信息-->
+    <select id="getOrderByOIdAndStatus" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where oId = #{oId} and status = #{status}
     </select>
 
     <!--根据总价格区间查找订单信息-->
-    <select id="getOrderByTPrice" resultType="com.youcha.entity.OrderTable">
-        select * from ordertable where tPrice between #{low} and #{high}
+    <select id="getOrderByTPriceAndStatus" resultType="com.youcha.entity.OrderTable">
+        select * from ordertable where status = #{status}
+                                   and tPrice between #{low} and #{high}
     </select>
 
     <!--根据评价id获取订单-->

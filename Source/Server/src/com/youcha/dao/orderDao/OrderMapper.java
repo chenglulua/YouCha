@@ -1,6 +1,7 @@
 package com.youcha.dao.orderDao;
 
 import com.youcha.entity.OrderTable;
+import com.youcha.entity.OrderWithDName;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public interface OrderMapper {
 
     /*根据用户id和状态查找订单信息*/
-    public ArrayList<OrderTable> getOrderByUserIdAndStatus(
+    public ArrayList<OrderWithDName> getOrderByUserIdAndStatus(
             @Param("userId") String userId, @Param("status") int status);
 
     /*更新评价assId*/
@@ -26,12 +27,14 @@ public interface OrderMapper {
     /*更改订单状态*/
     public boolean updateOrderStatusByOId(int oId);
 
-    /*根据oId查找订单信息*/
-    public ArrayList<OrderTable> getOrderByOId(int oId);
+    /*根据oId和status查找订单信息*/
+    public ArrayList<OrderTable> getOrderByOIdAndStatus(
+            @Param("oId") int oId, @Param("status") boolean status);
 
     /*根据总价格区间查找订单信息*/
-    public ArrayList<OrderTable> getOrderByTPrice(
-            @Param("low") int low, @Param("high") int high);
+    public ArrayList<OrderTable> getOrderByTPriceAndStatus(
+            @Param("low") int low, @Param("high") int high,
+            @Param("status") boolean status);
 
     /*根据评价id获取订单*/
     public OrderTable getOrderByAssId(int assId);

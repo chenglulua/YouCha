@@ -93,3 +93,37 @@
 后台：
 
 后端：购物车数据库表（购物车id，userId，drinkId，甜度、温度、小料、规格、num）；前端返回order表，list嵌套
+
+### **2021.02.24日 第八次会议**
+
+后端下周目标：
+
+1、bug修改
+
+http://localhost:8080/youcha/orderTable/getOrderByAssId?assId=2（完成）
+
+http://localhost:3000/api/youcha/user/getUserByUserId?userId=12589456
+
+2、接口修改：（完成）
+
+根据订单号和状态——搜索订单
+
+根据订单状态和价格区间——搜索订单
+
+3、getOrderByStatus——返回嵌套数组（完成）
+
+4、新增type的接口，传递字符串类型的类型名称（完成）
+
+5、图片？
+
+6、getOrderByUserIdAndStatus 添加返回参数：饮品名称（完成）
+
+7、购物车 加号——	A接口  参数sid，flag——num+1（完成）
+
+​	  购物车  减号——  A接口  参数sid，flag——num-1（完成）
+
+8、购物车  删除——	B接口 参数array[sid]——delete（完成）
+
+9、购物车去结算——删除购物车接口——参数array[sid]（完成）同上一个
+
+​									 新增订单接口——array[order]

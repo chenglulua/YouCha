@@ -16,4 +16,10 @@ public interface TypeMapper {
 
     /*根据id获取类型*/
     Type getTypeById(int typeId);
+
+    /*获取类型总数*/
+    int getTypeNum();
+
+    /*新增类型*/
+    boolean addType(Type type);
 }

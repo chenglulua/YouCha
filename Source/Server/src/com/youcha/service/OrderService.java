@@ -2,6 +2,7 @@ package com.youcha.service;
 
 import com.youcha.dao.orderDao.OrderMapper;
 import com.youcha.entity.OrderTable;
+import com.youcha.entity.OrderWithDName;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,42 +24,16 @@ public class OrderService {
     private OrderMapper orderMapper;
 
     /**
-     * @Description 前端根据userId获取用户订单
+     * @Description 前端根据userId获取用户订单（含dName）
      * @Param [userId, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     public ArrayList<ArrayList> getOrderByUserIdAndStatus(String userId, int status) {
-        ArrayList<OrderTable> orderList =
+        ArrayList<OrderWithDName> orderList =
                 orderMapper.getOrderByUserIdAndStatus(userId, status);
         System.out.println("原订单数组：" + orderList);
-        //新数组
-        ArrayList<ArrayList> newOrderList = new ArrayList<>();
-        //内部嵌套数组
-        ArrayList<OrderTable> singleOrder = new ArrayList<>();
-        //flag标志位，记录oId，判断是否为同一订单
-        int flag = 0;
-        //将订单数组根据oId嵌套成为新的订单数组
-        for (OrderTable order : orderList) {
-            if (flag == order.getOId()){
-                //当前和上一个为同一订单 -> 放到singleOrder
-                singleOrder.add(order);
-            } else {
-                //当前和上一个不为同一订单
-                //如果singleOrder不为空，先存到newOrderList
-                if (!singleOrder.isEmpty()){
-                    System.out.println("oId为" + flag + "的订单数组：" + singleOrder);
-                    newOrderList.add(singleOrder);
-                    //重置singleOrder
-                    singleOrder = new ArrayList<>();
-                }
-                //否则，放到singleOrder
-                singleOrder.add(order);
-                //重新设置flag
-                flag = order.getOId();
-            }
-        }
-        //将最后一个数组插入newOrderList
-        newOrderList.add(singleOrder);
+        //嵌套数组
+        ArrayList<ArrayList> newOrderList = NestedArrayN(orderList);
         System.out.println("嵌套订单数组：" + newOrderList);
         return newOrderList;
     }
@@ -97,25 +72,28 @@ public class OrderService {
     }
 
     /**
-     * @Description 后台根据oId查找订单
-     * @Param [oId]
+     * @Description 后台根据oId和status查找订单
+     * @Param [oId, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
-    public ArrayList<OrderTable> getOrderByOId(int oId) {
-        ArrayList<OrderTable> orders = orderMapper.getOrderByOId(oId);
-        System.out.println(orders);
-        return orders;
+    public ArrayList<ArrayList> getOrderByOIdAndStatus(int oId, boolean status) {
+        ArrayList<OrderTable> orders = orderMapper.getOrderByOIdAndStatus(oId, status);
+        ArrayList<ArrayList> newOrders = NestedArray(orders);
+        System.out.println(newOrders);
+        return newOrders;
     }
 
     /**
-     * @Description 后台根据价格区间查找订单
-     * @Param [low, high]
+     * @Description 后台根据price区间和status查找订单
+     * @Param [low, high, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
-    public ArrayList<OrderTable> getOrderByTPrice(int low, int high) {
-        ArrayList<OrderTable> orders = orderMapper.getOrderByTPrice(low, high);
-        System.out.println(orders);
-        return orders;
+    public ArrayList<ArrayList> getOrderByTPriceAndStatus(
+            int low, int high, boolean status) {
+        ArrayList<OrderTable> orders = orderMapper.getOrderByTPriceAndStatus(low, high, status);
+        ArrayList<ArrayList> newOrders = NestedArray(orders);
+        System.out.println(newOrders);
+        return newOrders;
     }
 
     /**
@@ -205,5 +183,79 @@ public class OrderService {
         formatter.setMinimumIntegerDigits(i);
         formatter.setGroupingUsed(false);
         return formatter.format(num);
+    }
+
+    /**
+     * @Description 将订单数组根据oId转换为嵌套数组
+     * @Param [oldOrders]
+     * @Return java.util.ArrayList<java.util.ArrayList>
+     */
+    public ArrayList<ArrayList> NestedArray(ArrayList<OrderTable> oldOrders){
+        //新数组
+        ArrayList<ArrayList> newOrderList = new ArrayList<>();
+        //内部嵌套数组
+        ArrayList<OrderTable> singleOrder = new ArrayList<>();
+        //flag标志位，记录oId，判断是否为同一订单
+        int flag = 0;
+        //将订单数组根据oId嵌套成为新的订单数组
+        for (OrderTable order : oldOrders) {
+            if (flag == order.getOId()){
+                //当前和上一个为同一订单 -> 放到singleOrder
+                singleOrder.add(order);
+            } else {
+                //当前和上一个不为同一订单
+                //如果singleOrder不为空，先存到newOrderList
+                if (!singleOrder.isEmpty()){
+                    System.out.println("oId为" + flag + "的订单数组：" + singleOrder);
+                    newOrderList.add(singleOrder);
+                    //重置singleOrder
+                    singleOrder = new ArrayList<>();
+                }
+                //否则，放到singleOrder
+                singleOrder.add(order);
+                //重新设置flag
+                flag = order.getOId();
+            }
+        }
+        //将最后一个数组插入newOrderList
+        newOrderList.add(singleOrder);
+        return newOrderList;
+    }
+
+    /**
+     * @Description 将订单数组（含dName）根据oId转换为嵌套数组
+     * @Param [oldOrders]
+     * @Return java.util.ArrayList<java.util.ArrayList>
+     */
+    public ArrayList<ArrayList> NestedArrayN(ArrayList<OrderWithDName> oldOrders){
+        //新数组
+        ArrayList<ArrayList> newOrderList = new ArrayList<>();
+        //内部嵌套数组
+        ArrayList<OrderWithDName> singleOrder = new ArrayList<>();
+        //flag标志位，记录oId，判断是否为同一订单
+        int flag = 0;
+        //将订单数组根据oId嵌套成为新的订单数组
+        for (OrderWithDName order : oldOrders) {
+            if (flag == order.getOId()){
+                //当前和上一个为同一订单 -> 放到singleOrder
+                singleOrder.add(order);
+            } else {
+                //当前和上一个不为同一订单
+                //如果singleOrder不为空，先存到newOrderList
+                if (!singleOrder.isEmpty()){
+                    System.out.println("oId为" + flag + "的订单数组：" + singleOrder);
+                    newOrderList.add(singleOrder);
+                    //重置singleOrder
+                    singleOrder = new ArrayList<>();
+                }
+                //否则，放到singleOrder
+                singleOrder.add(order);
+                //重新设置flag
+                flag = order.getOId();
+            }
+        }
+        //将最后一个数组插入newOrderList
+        newOrderList.add(singleOrder);
+        return newOrderList;
     }
 }

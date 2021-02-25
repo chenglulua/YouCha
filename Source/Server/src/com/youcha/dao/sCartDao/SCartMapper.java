@@ -19,4 +19,13 @@ public interface SCartMapper {
 
     /*新增购物车*/
     boolean addSCartByUserId(ShoppingCart sCart);
+
+    /*根据sId增加num*/
+    boolean plusSCartBySId(int sId);
+
+    /*根据sId减少num*/
+    boolean reduceSCartBySId(int sId);
+
+    /*根据sId批量删除购物车*/
+    boolean deleteSCartBySId(ArrayList sIds);
 }

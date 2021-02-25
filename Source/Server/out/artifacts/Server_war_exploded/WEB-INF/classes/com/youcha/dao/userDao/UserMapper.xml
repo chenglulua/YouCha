@@ -14,7 +14,7 @@
     </select>
 
     <!--根据用户Id查找用户-->
-    <select id="getUserById" resultType="com.youcha.entity.User">
+    <select id="getUserByUserId" resultType="com.youcha.entity.User">
         select * from user where userId = #{userId}
     </select>
 

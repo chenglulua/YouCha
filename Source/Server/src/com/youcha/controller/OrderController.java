@@ -57,26 +57,28 @@ public class OrderController {
     }
 
     /**
-     * @Description 后台根据oId查找订单
-     * @Param [oId]
+     * @Description 后台根据oId和status查找订单
+     * @Param [oId, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     @ResponseBody
-    @RequestMapping("getOrderByOId")
-    public ArrayList<OrderTable> getOrderByOId(@RequestParam("oId") int oId) {
-        return this.orderService.getOrderByOId(oId);
+    @RequestMapping("getOrderByOIdAndStatus")
+    public ArrayList<ArrayList> getOrderByOIdAndStatus(
+            @RequestParam("oId") int oId, @RequestParam("status") boolean status) {
+        return this.orderService.getOrderByOIdAndStatus(oId, status);
     }
 
     /**
-     * @Description 后台根据price区间查找订单
-     * @Param [low, high]
+     * @Description 后台根据price区间和status查找订单
+     * @Param [low, high, status]
      * @Return java.util.ArrayList<com.youcha.entity.OrderTable>
      */
     @ResponseBody
-    @RequestMapping("getOrderByTPrice")
-    public ArrayList<OrderTable> getOrderByTPrice(
-            @RequestParam("low") int low, @RequestParam("high") int high) {
-        return this.orderService.getOrderByTPrice(low, high);
+    @RequestMapping("getOrderByTPriceAndStatus")
+    public ArrayList<ArrayList> getOrderByTPriceAndStatus(
+            @RequestParam("low") int low, @RequestParam("high") int high,
+            @RequestParam("high") boolean status) {
+        return this.orderService.getOrderByTPriceAndStatus(low, high, status);
     }
 
     /**

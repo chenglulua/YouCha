@@ -41,4 +41,21 @@ public class TypeService {
         System.out.println(type);
         return type;
     }
+
+    /**
+     * @Description 后台根据tName新增类型
+     * @Param [tName]
+     * @Return boolean
+     */
+    public boolean addType(String tName) {
+        Type type = new Type();
+        //1、设置typeId = num + 1
+        int num = typeMapper.getTypeNum();
+        type.setTypeId(num + 1);
+        type.setTName(tName);
+        //2、新增type
+        boolean result = typeMapper.addType(type);
+        System.out.println("type新增结果：" + result);
+        return result;
+    }
 }

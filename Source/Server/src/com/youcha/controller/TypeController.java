@@ -44,4 +44,15 @@ public class TypeController {
     public Type getTypeByTypeId(@RequestParam("typeId") int typeId) {
         return this.typeService.getTypeById(typeId);
     }
+
+    /**
+     * @Description 后台根据tName新增类型
+     * @Param [tName]
+     * @Return boolean
+     */
+    @ResponseBody
+    @RequestMapping("addType")
+    public boolean addType(String tName) {
+        return this.typeService.addType(tName);
+    }
 }
