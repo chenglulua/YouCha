@@ -3,10 +3,7 @@ package com.youcha.controller;
 import com.youcha.entity.Drink;
 import com.youcha.service.DrinkService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -71,7 +68,7 @@ public class DrinkController {
      */
     @ResponseBody
     @RequestMapping("updateDrink")
-    public boolean updateDrink(@RequestParam Drink newDrink){
+    public boolean updateDrink(@RequestBody Drink newDrink){
         return this.drinkService.updateDrink(newDrink);
     }
 
@@ -104,7 +101,7 @@ public class DrinkController {
      */
     @ResponseBody
     @RequestMapping("addDrink")
-    public boolean addDrink(@RequestParam Drink newDrink){
+    public boolean addDrink(@RequestBody Drink newDrink){
         return this.drinkService.addDrink(newDrink);
     }
 
