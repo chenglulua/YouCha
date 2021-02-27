@@ -77,7 +77,7 @@ public class OrderController {
     @RequestMapping("getOrderByTPriceAndStatus")
     public ArrayList<ArrayList> getOrderByTPriceAndStatus(
             @RequestParam("low") int low, @RequestParam("high") int high,
-            @RequestParam("high") boolean status) {
+            @RequestParam("status") boolean status) {
         return this.orderService.getOrderByTPriceAndStatus(low, high, status);
     }
 
