@@ -52,7 +52,7 @@ public class TypeController {
      */
     @ResponseBody
     @RequestMapping("addType")
-    public boolean addType(String tName) {
+    public boolean addType(@RequestParam("tName") String tName) {
         return this.typeService.addType(tName);
     }
 }
