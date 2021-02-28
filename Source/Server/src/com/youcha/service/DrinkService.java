@@ -116,8 +116,8 @@ public class DrinkService {
     public boolean addDrink(Drink newDrink) {
         //1、设置drinkId = num + 1
         int drinkId = drinkMapper.getDrinkNum();
-        newDrink.setDrinkId(drinkId);
-        //2、新增音频
+        newDrink.setDrinkId(drinkId + 1);
+        //2、新增饮品
         int result = drinkMapper.insertDrink(newDrink);
         System.out.println("新增饮品结果：" + result);
         return true;

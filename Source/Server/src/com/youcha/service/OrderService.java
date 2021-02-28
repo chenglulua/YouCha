@@ -90,7 +90,8 @@ public class OrderService {
      */
     public ArrayList<ArrayList> getOrderByTPriceAndStatus(
             int low, int high, boolean status) {
-        ArrayList<OrderTable> orders = orderMapper.getOrderByTPriceAndStatus(low, high, status);
+        ArrayList<OrderTable> orders =
+                orderMapper.getOrderByTPriceAndStatus(low, high, status);
         ArrayList<ArrayList> newOrders = NestedArray(orders);
         System.out.println(newOrders);
         return newOrders;

@@ -55,7 +55,7 @@ public class AssessmentController {
         boolean result1 = this.orderService.updateOrderAssByOrderId(orderId, assId);
         //3、根据drinkId在评价表中计算evStar
         int evStar = this.assService.getEvStarByDrinkId(drinkId);
-        //4、更改drink表中的evStar
+        //更改drink表中的evStar
         boolean result2 = this.drinkService.updateDrinkEvStarByDrinkId(drinkId, evStar);
         return result2;
     }

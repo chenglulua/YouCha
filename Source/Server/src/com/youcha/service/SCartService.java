@@ -39,7 +39,7 @@ public class SCartService {
     public boolean addSCartByUserId(ShoppingCart sCart, String userId) {
         //1、设置userId
         sCart.setUserId(userId);
-        //2、设置sId
+        //2、设置sId = 购物车总数 + 1
         int sum = sCartMapper.getAllSCartSum();
         int sId = sum + 1;
         sCart.setsId(sId);
