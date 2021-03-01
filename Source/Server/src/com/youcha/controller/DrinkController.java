@@ -116,6 +116,18 @@ public class DrinkController {
         return this.drinkService.deleteDrinkById(drinkId);
     }
 
+    /**
+     * @Description 前端根据drinkId数组获取饮品
+     * @Param [drinkIds]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    @ResponseBody
+    @RequestMapping("getDrinkByDrinkIds")
+    public ArrayList<Drink> getDrinkByDrinkIds(
+            @RequestParam("drinkIds") ArrayList<Integer> drinkIds){
+        return this.drinkService.getDrinkByDrinkIds(drinkIds);
+    }
+
     /*后台饮品图片上传，使用spring mvc提供的类的方法上传文件*/
     /**
      * @Description 文件上传

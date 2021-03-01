@@ -1,6 +1,7 @@
 package com.youcha;
 
 import com.youcha.controller.*;
+import com.youcha.entity.Type;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,15 +34,8 @@ public class MyBatisTest {
 	@Test
 	public void main() {
 
-		ArrayList sids = new ArrayList();
-		sids.add(3);
-		sids.add(4);
-		sids.add(5);
-		sCartController.deleteSCartBySId(sids);
-
-
-//		ArrayList<Type> types = typeController.getAllType();
-//		System.out.println(types);
+		ArrayList<Type> types = typeController.getAllType();
+		System.out.println(types);
 
 //		ApplicationContext ac = new ClassPathXmlApplicationContext(
 //				"/web/WEB-INF/applicationContext.xml");

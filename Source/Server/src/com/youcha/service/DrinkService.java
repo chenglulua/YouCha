@@ -146,6 +146,21 @@ public class DrinkService {
     }
 
     /**
+     * @Description 前端根据drinkId数组获取饮品
+     * @Param [drinkIds]
+     * @Return java.util.ArrayList<com.youcha.entity.Drink>
+     */
+    public ArrayList<Drink> getDrinkByDrinkIds(ArrayList<Integer> drinkIds) {
+        ArrayList<Drink> drinkList = new ArrayList<>();
+        for (int drinkId: drinkIds) {
+            Drink drink = drinkMapper.getDrinkById(drinkId);
+            drinkList.add(drink);
+        }
+        System.out.println(drinkList);
+        return drinkList;
+    }
+
+    /**
      * @Description 在[0-sum)中生成num个不重复的随机数
      * @Param [sum, num]
      * @Return int[]
