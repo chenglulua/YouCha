@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2021-02-18 11:32:52
+Date: 2021-03-01 20:37:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -126,33 +126,33 @@ CREATE TABLE `ordertable` (
 -- Records of ordertable
 -- ----------------------------
 INSERT INTO `ordertable` VALUES ('1', '1', '12846059', '2020-12-6-15:05:03', '1', '1', 'none', 'ice', 'pearl', 'large', '2', '14', '06001', '1');
-INSERT INTO `ordertable` VALUES ('2', '1', '12846059', '2020-12-6-15:05:03', '2', '2', 'total', 'hot', null, 'middle', '1', '4', '06001', '1');
+INSERT INTO `ordertable` VALUES ('2', '1', '12846059', '2020-12-6-15:05:03', '2', '2', 'total', 'hot', null, 'middle', '1', '14', '06001', '1');
 INSERT INTO `ordertable` VALUES ('3', '2', '18469875', '2021-1-2-11:28:26', '30', '3', null, null, null, 'large', '1', '5', '02001', '1');
 INSERT INTO `ordertable` VALUES ('4', '3', '12589456', '2021-1-2-11:30:10', '17', '4', null, null, null, 'large', '1', '7', '02002', '1');
-INSERT INTO `ordertable` VALUES ('5', '4', '12846059', '2021-1-3-18:16:23', '25', null, 'half', 'hot', '', 'middle', '1', '7', '02003', '0');
+INSERT INTO `ordertable` VALUES ('5', '4', '12846059', '2021-1-3-18:16:23', '25', null, 'half', 'hot', '', 'middle', '1', '7', '02003', '1');
 INSERT INTO `ordertable` VALUES ('6', '5', '18469875', '2021-1-3-18:16:25', '22', null, 'half', 'normal', 'pearl', 'large', '2', '18', '05004', '0');
-INSERT INTO `ordertable` VALUES ('7', '5', '18469875', '2021-1-3-18:16:23', '7', null, 'none', 'ice', null, 'middle', '1', '5', '05004', '0');
+INSERT INTO `ordertable` VALUES ('7', '5', '18469875', '2021-1-3-18:16:23', '7', null, 'none', 'ice', null, 'middle', '1', '18', '05004', '0');
 
 -- ----------------------------
 -- Table structure for shoppingcart
 -- ----------------------------
 DROP TABLE IF EXISTS `shoppingcart`;
 CREATE TABLE `shoppingcart` (
-  `sid` int(11) NOT NULL,
+  `sId` int(11) NOT NULL,
   `userId` varchar(255) DEFAULT NULL,
   `drinkId` int(11) DEFAULT NULL,
-  `sBrix` varchar(255) DEFAULT NULL,
-  `sTemp` varchar(255) DEFAULT NULL,
-  `sExtra` varchar(255) DEFAULT NULL,
-  `sSize` varchar(255) DEFAULT NULL,
+  `sBrix` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sTemp` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sExtra` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sSize` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `num` int(11) DEFAULT NULL,
-  PRIMARY KEY (`sid`)
+  PRIMARY KEY (`sId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shoppingcart
 -- ----------------------------
-INSERT INTO `shoppingcart` VALUES ('1', '12589456', '3', 'none', 'ice', 'pearl', 'middle', '2');
+INSERT INTO `shoppingcart` VALUES ('1', '12589456', '3', 'none', 'ice', 'pearl', 'middle', '1');
 INSERT INTO `shoppingcart` VALUES ('2', '12589456', '15', null, null, null, 'large', '1');
 
 -- ----------------------------
