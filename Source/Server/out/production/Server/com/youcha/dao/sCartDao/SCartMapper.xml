@@ -34,8 +34,8 @@
     <!--根据sId批量删除购物车-->
     <delete id="deleteSCartBySId">
         delete from shoppingcart where sId in
-        <foreach collection="list" item="sId" open="(" separator="," close=")">
-            #{sId}
-        </foreach>
+            <foreach collection="list" item="sId" open="(" separator="," close=")">
+                #{sId}
+            </foreach>
     </delete>
 </mapper>

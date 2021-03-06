@@ -4,17 +4,12 @@
 <mapper namespace="com.youcha.dao.orderDao.OrderMapper">
     
     <!--根据用户id和状态查找Order信息-->
-    <select id="getOrderByUserIdAndStatus"
-            resultType="com.youcha.entity.OrderTable" resultMap="orderWithDName">
-    <!--select o.orderId, o.oId, o.userId, o.time, o.drinkId, o.assId, o.oBrix, o.oTemp,
-           o.oExtra, o.Size, o.num, o.tPrice, o.code, o.status, d.dName
-    from orderTable o, drink d
-    where o.userId = #{userId}, o.status = #{status} and o.drinkId = d.drinkId-->
-    select o.*, d.dName from orderTable o, drink d
-    WHERE o.drinkId = d.drinkId
-</select>
+    <select id="getOrderByUserIdAndStatus" resultType="com.youcha.entity.OrderWithDName">
+        select * from orderTable o, drink d
+        where o.drinkId = d.drinkId and o.userId = #{userId} and o.status = #{status}
+    </select>
 
- <!--更新评价assId-->
+    <!--更新评价assId-->
     <update id="updateOrderAss">
         update ordertable set assId = #{assId} where orderId = #{orderId}
     </update>

@@ -9,7 +9,7 @@
         where o.drinkId = d.drinkId and o.userId = #{userId} and o.status = #{status}
     </select>
 
- <!--更新评价assId-->
+    <!--更新评价assId-->
     <update id="updateOrderAss">
         update ordertable set assId = #{assId} where orderId = #{orderId}
     </update>
