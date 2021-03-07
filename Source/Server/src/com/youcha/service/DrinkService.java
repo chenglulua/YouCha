@@ -4,9 +4,14 @@ import com.youcha.dao.drinkDao.DrinkMapper;
 import com.youcha.entity.Drink;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.BASE64Decoder;
 
 import javax.annotation.Resource;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Random;
 
 /**
@@ -117,7 +122,12 @@ public class DrinkService {
         //1、设置drinkId = num + 1
         int drinkId = drinkMapper.getDrinkNum();
         newDrink.setDrinkId(drinkId + 1);
-        //2、新增饮品
+        System.out.println("新增饮品为：" + newDrink);
+        //2、处理图片
+        String imgName = drinkId + ".png";
+        changeBase64ToImage(newDrink.getImg(), imgName);
+        newDrink.setImg("drinkImg/" + imgName);
+        //3、新增饮品
         int result = drinkMapper.insertDrink(newDrink);
         System.out.println("新增饮品结果：" + result);
         return true;
@@ -180,5 +190,46 @@ public class DrinkService {
             list[i] = j;
         }
         return list;
+    }
+
+    /*将base64格式的字符串转换成二进制流，并转换成图片*/
+    /**
+     * @Description 文件上传
+     * @Param [base64String]
+     * @Return boolean
+     */
+    public  boolean changeBase64ToImage(String base64String, String imgName){
+        //base64格式字符串为空，返回false
+        System.out.println(base64String);
+        if(base64String == null){
+            return false;
+        }
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            //解码过程，即将base64字符串转换成二进制流
+            byte[] imageByte = decoder.decodeBuffer(base64String);
+
+            byte[] decoded = Base64.getDecoder().decode(base64String);
+            String decodeStr = new String(decoded);
+            System.out.println("Base 64 解密后：" + decodeStr);
+
+            //生成图片路径和文件名
+            String pathString = "C:\\Users\\lenovo\\Desktop" + imgName;
+            System.out.println("存储路径为：" + pathString);
+            OutputStream out = new FileOutputStream(pathString);
+            out.write(imageByte);
+            /*
+             * 使用流时,都会有一个缓冲区,按一种它认为比较高效的方法来发数据:
+             * 把要发的数据先放到缓冲区,缓冲区放满以后再一次性发过去,而不是分开一次一次地发.
+             * 而flush()表示强制将缓冲区中的数据发送出去,不必等到缓冲区满.
+             * 所以如果在用流的时候,没有用flush()这个方法,很多情况下会出
+             * 现流的另一边读不到数据的问题,特别是在数据特别小的情况下.
+             */
+            out.flush();
+            out.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
