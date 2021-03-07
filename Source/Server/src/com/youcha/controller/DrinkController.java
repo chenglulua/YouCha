@@ -80,7 +80,7 @@ public class DrinkController {
     @ResponseBody
     @RequestMapping("getDrinkByDrinkId")
     public Drink getDrinkByDrinkId(@RequestParam("drinkId") int drinkId){
-        return this.drinkService.getDrink(drinkId);
+        return this.drinkService.getDrinkByDrinkId(drinkId);
     }
 
     /**
